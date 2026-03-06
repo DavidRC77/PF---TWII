@@ -1,0 +1,23 @@
+# Credenciales y configuración sensible
+.env
+
+# Dependencias de Composer (si llegás a usar)
+vendor/
+
+# Caché y logs
+*.log
+*.cache
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de IDEs
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Archivos de XAMPP/PHP generados
+php_errorlog
