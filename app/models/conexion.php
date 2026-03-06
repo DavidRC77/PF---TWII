@@ -20,11 +20,12 @@ class Conexion {
     private $conn;
 
     public function __construct() {
-        $this->host     = $_ENV['DB_HOST']  ?? '';
-        $this->port     = $_ENV['DB_PORT']  ?? '5432';
-        $this->dbname   = $_ENV['DB_NAME']  ?? '';
-        $this->user     = $_ENV['DB_USER']  ?? '';
-        $this->password = $_ENV['DB_PASS']  ?? '';
+        // $_ENV se completa localmente desde el .env; en Vercel se usan las variables de entorno inyectadas via getenv()
+        $this->host     = $_ENV['DB_HOST']  ?? getenv('DB_HOST')  ?? '';
+        $this->port     = $_ENV['DB_PORT']  ?? getenv('DB_PORT')  ?? '5432';
+        $this->dbname   = $_ENV['DB_NAME']  ?? getenv('DB_NAME')  ?? '';
+        $this->user     = $_ENV['DB_USER']  ?? getenv('DB_USER')  ?? '';
+        $this->password = $_ENV['DB_PASS']  ?? getenv('DB_PASS')  ?? '';
     }
 
     public function conectar() {
