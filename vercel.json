@@ -4,8 +4,7 @@
       "runtime": "vercel-php@0.7.2"
     }
   },
-  "routes": [
-    { "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|webp))", "dest": "/$1" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/index.php" }
   ]
 }
