@@ -49,15 +49,16 @@ body.login-page {
     padding: 12px 15px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #666666;
-    border-radius: 0;
+    border-bottom: 2px solid #000000;
+    border-radius: 8px 8px 0 0;
+    color: #000000;
     box-shadow: none;
 }
 
 .login-box form input.form-control:focus {
     outline: none;
-    border-bottom: 1px solid #000000;
-    background-color: rgba(0, 0, 0, 0.02);
+    border-bottom: 3px solid #000000;
+    background-color: rgba(0, 0, 0, 0.04);
     box-shadow: none;
 }
 
