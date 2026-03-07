@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -26,12 +26,12 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?= $titulo ?></title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="login-box" style="max-width: 500px;">
         <h2><?= $titulo ?></h2>
-        <form action="../controllers/accion_usuario.php" method="POST">
+        <form action="/?ruta=accion_usuario" method="POST">
             <input type="hidden" name="id_usuario" value="<?= $u['id'] ?>">
             
             <label>Nombre Completo:</label>
@@ -65,7 +65,7 @@ if (isset($_GET['id'])) {
             </select>
 
             <button type="submit" name="accion" value="guardar" style="background-color: #27ae60; margin-top:10px;">Guardar Usuario</button>
-            <a href="../views/gestionar_usuarios.php" style="display:block; text-align:center; margin-top:15px; color:#7f8c8d; text-decoration:none;">Cancelar</a>
+            <a href="/?ruta=gestionar_usuarios" style="display:block; text-align:center; margin-top:15px; color:#7f8c8d; text-decoration:none;">Cancelar</a>
         </form>
     </div>
 </body>

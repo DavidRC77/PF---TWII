@@ -1,15 +1,78 @@
 <?php
-session_start();
-
-$ruta = isset($_GET['ruta']) ? $_GET['ruta'] : 'login';
+$ruta = $_GET['ruta'] ?? 'login';
 
 switch ($ruta) {
     case 'login':
-        header("Location: app/views/login.php");
-        exit();
+        require_once __DIR__ . '/app/views/login.php';
         break;
-        
+    case 'panel_admin':
+        require_once __DIR__ . '/app/views/panel_admin.php';
+        break;
+    case 'catalogo':
+        require_once __DIR__ . '/app/views/catalogo.php';
+        break;
+    case 'caja':
+        require_once __DIR__ . '/app/views/caja.php';
+        break;
+    case 'gestionar_reservas':
+        require_once __DIR__ . '/app/views/gestionar_reservas.php';
+        break;
+    case 'gestionar_usuarios':
+        require_once __DIR__ . '/app/views/gestionar_usuarios.php';
+        break;
+    case 'historial_reservas':
+        require_once __DIR__ . '/app/views/historial_reservas.php';
+        break;
+    case 'inventario':
+        require_once __DIR__ . '/app/views/inventario.php';
+        break;
+    case 'mis_reservas':
+        require_once __DIR__ . '/app/views/mis_reservas.php';
+        break;
+    case 'nuevo_producto':
+        require_once __DIR__ . '/app/views/nuevo_producto.php';
+        break;
+    case 'producto_form':
+        require_once __DIR__ . '/app/views/producto_form.php';
+        break;
+    case 'registro_ventas':
+        require_once __DIR__ . '/app/views/registro_ventas.php';
+        break;
+    case 'usuario_form':
+        require_once __DIR__ . '/app/views/usuario_form.php';
+        break;
+    case 'logout':
+        require_once __DIR__ . '/app/controllers/logout.php';
+        break;
+    case 'horneados':
+        require_once __DIR__ . '/app/controllers/horneados.php';
+        break;
+    case 'perdidas':
+        require_once __DIR__ . '/app/controllers/perdidas.php';
+        break;
+    case 'accion_cliente_reserva':
+        require_once __DIR__ . '/app/controllers/accion_cliente_reserva.php';
+        break;
+    case 'procesar_reserva':
+        require_once __DIR__ . '/app/controllers/procesar_reserva.php';
+        break;
+    case 'procesar_venta':
+        require_once __DIR__ . '/app/controllers/procesar_venta.php';
+        break;
+    case 'accion_usuario':
+        require_once __DIR__ . '/app/controllers/accion_usuario.php';
+        break;
+    case 'accion_producto':
+        require_once __DIR__ . '/app/controllers/accion_producto.php';
+        break;
+    case 'cambiar_estado_reserva':
+        require_once __DIR__ . '/app/controllers/cambiar_estado_reserva.php';
+        break;
+    case 'api_stock':
+        require_once __DIR__ . '/app/controllers/api_stock.php';
+        break;
     default:
+        http_response_code(404);
         echo "<h1>Error 404</h1><p>La página que buscas no existe.</p>";
         break;
 }

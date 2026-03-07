@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -48,24 +48,24 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Historial de Reservas</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
         <h2>Historial Completo de Reservas</h2>
         <div>
-            <a href="../views/panel_admin.php" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 
     <div class="contenedor-principal">
         <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-            <form action="../views/historial_reservas.php" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
+            <form action="/?ruta=historial_reservas" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
                 <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por N° Ticket o DNI..." style="margin: 0; flex: 1;">
                 <button type="submit" style="width: auto; margin: 0; background-color: #2980b9;">Buscar</button>
                 <?php if($busqueda !== ''): ?>
-                    <a href="../views/historial_reservas.php" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
+                    <a href="/?ruta=historial_reservas" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
                 <?php endif; ?>
             </form>
         </div>

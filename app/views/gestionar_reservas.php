@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -54,18 +54,18 @@ try {
     <div class="navbar">
         <h2>Reservas de Hoy</h2>
         <div>
-            <a href="../views/panel_admin.php" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 
     <div class="contenedor-principal">
         <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-            <form action="../views/gestionar_reservas.php" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
+            <form action="/?ruta=gestionar_reservas" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
                 <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por N° Ticket o DNI..." style="margin: 0; flex: 1;">
                 <button type="submit" style="width: auto; margin: 0; background-color: #2980b9;">Buscar</button>
                 <?php if($busqueda !== ''): ?>
-                    <a href="../views/gestionar_reservas.php" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
+                    <a href="/?ruta=gestionar_reservas" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
                 <?php endif; ?>
             </form>
         </div>
@@ -116,12 +116,12 @@ try {
                             </td>
                             <td>
                                 <?php if ($res['estado'] === 'pendiente'): ?>
-                                    <form action="../controllers/cambiar_estado_reserva.php" method="POST" style="display: inline-flex; gap: 5px;" onsubmit="return procesarAccionAdmin(this);">
+                                    <form action="/?ruta=cambiar_estado_reserva" method="POST" style="display: inline-flex; gap: 5px;" onsubmit="return procesarAccionAdmin(this);">
                                         <input type="hidden" name="id" value="<?= $res['id'] ?>">
                                         <input type="hidden" name="nuevo_estado" value="">
                                         <input type="hidden" name="motivo" value="">
                                         
-                                        <a href="../views/caja.php?reserva_id=<?= $res['id'] ?>" style="background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center;">Cobrar Ticket</a>
+                                        <a href="/?ruta=caja&reserva_id=<?= $res['id'] ?>" style="background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center;">Cobrar Ticket</a>
                                         <button type="submit" onclick="this.form.nuevo_estado.value='cancelado';" style="margin: 0; padding: 5px 10px; background-color: #c0392b; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancelar</button>
                                     </form>
                                 <?php else: ?>

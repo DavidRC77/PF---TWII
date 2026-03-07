@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 $error = '';
 
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['rol']             = $usuario['rol'];
 
                 if ($usuario['rol'] === 'admin') {
-                    header("Location: ../views/panel_admin.php");
+                    header("Location: /?ruta=panel_admin");
                 } else {
-                    header("Location: ../views/catalogo.php");
+                    header("Location: /?ruta=catalogo");
                 }
                 exit();
             } else {
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Panadería</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../public/assets/css/login.css">
+    <link rel="stylesheet" href="/public/assets/css/login.css">
 </head>
 <body class="login-page d-flex flex-column justify-content-center align-items-center vh-100">
     

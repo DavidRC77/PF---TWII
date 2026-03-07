@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -11,7 +11,7 @@ $correo = trim($_POST['correo']);
 $clave  = trim($_POST['clave']);
 
 if (empty($correo) || empty($clave)) {
-    header("Location: ../views/login.php?error=" . urlencode("Por favor, complete todos los campos."));
+        header("Location: /?ruta=login&error=" . urlencode("Por favor, complete todos los campos."));
     exit();
 }
 
@@ -31,17 +31,17 @@ try {
         $_SESSION['rol']              = $usuario['rol'];
 
         if ($usuario['rol'] === 'admin') {
-            header("Location: ../views/panel_admin.php");
+            header("Location: /?ruta=panel_admin");
         } else {
-            header("Location: ../views/catalogo.php");
+            header("Location: /?ruta=catalogo");
         }
         exit();
     } else {
-        header("Location: ../views/login.php?error=" . urlencode("Correo o contraseña incorrectos."));
+        header("Location: /?ruta=login&error=" . urlencode("Correo o contraseña incorrectos."));
         exit();
     }
 } catch (PDOException $e) {
-    header("Location: ../views/login.php?error=" . urlencode("Error de sistema: " . $e->getMessage()));
+    header("Location: /?ruta=login&error=" . urlencode("Error de sistema: " . $e->getMessage()));
     exit();
 }
 ?>

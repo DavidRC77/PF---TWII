@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -21,15 +21,15 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Usuarios</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
         <h2>Control Total de Usuarios</h2>
         <div>
-            <a href="../views/usuario_form.php" style="background-color: #27ae60; margin-right: 10px;">+ Nuevo Usuario</a>
-            <a href="../views/panel_admin.php" style="background-color: #34495e; margin-right: 10px;">Volver</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=usuario_form" style="background-color: #27ae60; margin-right: 10px;">+ Nuevo Usuario</a>
+            <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 
@@ -61,9 +61,9 @@ try {
                         </td>
                         <td>
                             <div style="display:flex; gap:5px;">
-                                <a href="../views/usuario_form.php?id=<?= $u['id'] ?>" class="btn-mis-reservas" style="padding:5px 10px; font-size:12px;">Editar</a>
+                                <a href="/?ruta=usuario_form&id=<?= $u['id'] ?>" class="btn-mis-reservas" style="padding:5px 10px; font-size:12px;">Editar</a>
                                 
-                                <form action="../controllers/accion_usuario.php" method="POST" style="margin:0;">
+                                <form action="/?ruta=accion_usuario" method="POST" style="margin:0;">
                                     <input type="hidden" name="id_usuario" value="<?= $u['id'] ?>">
                                     <button type="submit" name="accion" value="toggle_activo" style="padding:5px 10px; font-size:12px; border:none; border-radius:4px; cursor:pointer; color:white; background-color: <?= $u['activo'] ? '#e67e22' : '#27ae60' ?>;">
                                         <?= $u['activo'] ? 'Desactivar' : 'Activar' ?>

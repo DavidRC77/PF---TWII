@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -26,12 +26,12 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?= $titulo ?></title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="login-box" style="max-width: 500px;">
         <h2><?= $titulo ?></h2>
-        <form action="../controllers/accion_producto.php" method="POST">
+        <form action="/?ruta=accion_producto" method="POST">
             <input type="hidden" name="id_producto" value="<?= $p['id'] ?>">
             
             <label>Nombre del Pan:</label>
@@ -55,7 +55,7 @@ if (isset($_GET['id'])) {
             <input type="text" name="imagen_url" value="<?= htmlspecialchars($p['imagen_url']) ?>">
 
             <button type="submit" name="accion" value="guardar" style="background-color: #27ae60; margin-top:15px;">Guardar Producto</button>
-            <a href="../views/inventario.php" style="display:block; text-align:center; margin-top:15px; color:#7f8c8d;">Cancelar</a>
+            <a href="/?ruta=inventario" style="display:block; text-align:center; margin-top:15px; color:#7f8c8d;">Cancelar</a>
         </form>
     </div>
 </body>

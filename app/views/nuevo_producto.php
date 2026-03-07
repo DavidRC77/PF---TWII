@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 ?>
@@ -10,16 +10,16 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Producto</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
         <h2>Agregar Nuevo Pan</h2>
-        <a href="../views/inventario.php">Volver al Inventario</a>
+        <a href="/?ruta=inventario">Volver al Inventario</a>
     </div>
     
     <div class="login-box">
-        <form action="../controllers/accion_producto.php" method="POST">
+        <form action="/?ruta=accion_producto" method="POST">
             <input type="hidden" name="id_producto" value="">
             <input type="text" name="nombre" placeholder="Nombre del Pan" required>
             <input type="text" name="descripcion" placeholder="Descripción">

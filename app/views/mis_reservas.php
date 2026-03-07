@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'basico' && $_SESSION['rol'] !== 'vip')) {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -33,14 +33,14 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Mis Reservas</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
         <h2>Mis Pedidos</h2>
         <div>
-            <a href="../views/catalogo.php" style="background-color: #34495e; margin-right: 10px;">Volver al Catálogo</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=catalogo" style="background-color: #34495e; margin-right: 10px;">Volver al Catálogo</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 

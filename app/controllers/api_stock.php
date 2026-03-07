@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 try {
     $conexion = new Conexion();

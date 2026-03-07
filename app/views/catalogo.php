@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'basico' && $_SESSION['rol'] !== 'vip')) {
-    header("Location: ../views/login.php");
+    header("Location: /?ruta=login");
     exit();
 }
 
@@ -60,14 +60,14 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Catálogo - Panadería</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css"></head>
+    <link rel="stylesheet" href="/public/assets/css/estilos.css"></head>
 <body>
     <div class="navbar">
         <h2>Panadería - Reservas Click & Collect</h2>
         <div>
             <span class="saludo-usuario">Hola, <?= htmlspecialchars($_SESSION['nombre_completo']) ?></span>
-            <a href="../views/mis_reservas.php" class="btn-mis-reservas">Mis Reservas</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=mis_reservas" class="btn-mis-reservas">Mis Reservas</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
     
@@ -108,7 +108,7 @@ try {
                         <h2 id="reloj">00:00</h2>
                     </div>
 
-                    <form action="../controllers/accion_cliente_reserva.php" method="POST" id="form-accion-reserva" class="formulario-acciones">
+                    <form action="/?ruta=accion_cliente_reserva" method="POST" id="form-accion-reserva" class="formulario-acciones">
                         <input type="hidden" name="id" value="<?= $reserva_activa['id'] ?>">
                         <input type="hidden" name="accion" value="">
                         <input type="hidden" name="motivo" value="">
@@ -124,7 +124,7 @@ try {
                     <div id="carrito-vacio">
                         <p>No tienes ningún pan en tu pedido aún.</p>
                     </div>
-                    <form id="form-carrito" action="../controllers/procesar_reserva.php" method="POST" style="display: none;">
+                    <form id="form-carrito" action="/?ruta=procesar_reserva" method="POST" style="display: none;">
                         <div id="items-carrito"></div>
                         <h4 id="total-carrito" class="total-pedido">Total: Bs. 0.00</h4>
                         <button type="submit" class="btn-reservar">Confirmar Pedido</button>
@@ -142,7 +142,7 @@ try {
         let carrito = {};
 
         function cargarCatalogo() {
-            fetch('../controllers/api_stock.php')
+            fetch('/?ruta=api_stock')
                 .then(response => response.json())
                 .then(productos => {
                     const contenedor = document.getElementById('contenedor-productos');

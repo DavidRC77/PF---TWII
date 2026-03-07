@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php"); exit();
+    header("Location: /?ruta=login"); exit();
 }
 
 $conexion = new Conexion();
@@ -42,7 +42,7 @@ if ($reserva_id) {
         }
         $items_reserva_json = json_encode($items);
     } else {
-        header("Location: ../views/caja.php"); exit();
+        header("Location: /?ruta=caja"); exit();
     }
 }
 ?>
@@ -51,14 +51,14 @@ if ($reserva_id) {
 <head>
     <meta charset="UTF-8">
     <title>Caja Registradora</title>
-    <link rel="stylesheet" href="../../public/assets/css/estilos.css">
+    <link rel="stylesheet" href="/public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
         <h2>Punto de Venta (POS)</h2>
         <div>
-            <a href="../views/panel_admin.php" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
-            <a href="../controllers/logout.php">Cerrar Sesión</a>
+            <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
+            <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 
@@ -87,7 +87,7 @@ if ($reserva_id) {
             <div class="tarjeta-pedido">
                 <h3>Detalle de Venta <?= $reserva_id ? "(Ticket #$reserva_id)" : '' ?></h3>
                 
-                <form id="form-caja" action="../controllers/procesar_venta.php" method="POST">
+                <form id="form-caja" action="/?ruta=procesar_venta" method="POST">
                     <input type="hidden" name="reserva_id" value="<?= $reserva_id ?>">
                     
                     <label>DNI Cliente:</label>

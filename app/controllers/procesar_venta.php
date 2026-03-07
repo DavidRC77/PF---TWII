@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php"); exit();
+    header("Location: /?ruta=login"); exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
         }
 
         $pdo->commit();
-        header("Location: ../views/caja.php?exito=1");
+        header("Location: /?ruta=caja&exito=1");
         exit();
 
     } catch (Exception $e) {
@@ -68,6 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 }
 
-header("Location: ../views/caja.php");
+header("Location: /?ruta=caja");
 exit();
 ?>

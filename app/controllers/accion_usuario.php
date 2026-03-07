@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../models/conexion.php';
+require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: ../views/login.php"); exit();
+    header("Location: /?ruta=login"); exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,6 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (PDOException $e) { die("Error: " . $e->getMessage()); }
 }
 
-header("Location: ../views/gestionar_usuarios.php");
+header("Location: /?ruta=gestionar_usuarios");
 exit();
 ?>
