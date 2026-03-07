@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;600&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+    background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+}
+
+/* ── TARJETA FORMULARIO ────────────────────────── */
+.login-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 36px 32px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 8px 30px rgba(44,62,80,0.12);
+}
+
+.login-box h2 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e2d1c3;
+}
+
+/* ── ETIQUETAS ─────────────────────────────────── */
+.login-box label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #34495e;
+    margin-top: 14px;
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+}
+
+/* ── INPUTS ────────────────────────────────────── */
+.login-box input[type="text"],
+.login-box input[type="number"],
+.login-box input[type="email"],
+.login-box input[type="password"],
+.login-box textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-bottom: 2px solid #2c3e50;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.875rem;
+    color: #2c3e50;
+    background: rgba(255,255,255,0.6);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.login-box input[type="text"]:focus,
+.login-box input[type="number"]:focus,
+.login-box input[type="email"]:focus,
+.login-box input[type="password"]:focus,
+.login-box textarea:focus {
+    outline: none;
+    border-color: #2c3e50;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(44,62,80,0.07);
+}
+
+/* ── FILA DE INPUTS ────────────────────────────── */
+.login-box > form > div[style] {
+    gap: 12px;
+}
+
+/* ── BOTÓN GUARDAR ─────────────────────────────── */
+.login-box button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    margin-top: 10px;
+}
+
+.login-box button[type="submit"]:hover {
+    background-color: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(39,174,96,0.3);
+}
+
+/* ── LINK CANCELAR ─────────────────────────────── */
+.login-box a[href] {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    color: #7f8c8d;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.login-box a[href]:hover {
+    color: #2c3e50;
+}
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 576px) {
+    body { padding: 20px 12px; }
+    .login-box { padding: 26px 20px; }
+    .login-box h2 { font-size: 1.3rem; }
+}

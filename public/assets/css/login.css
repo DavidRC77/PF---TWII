@@ -47,7 +47,7 @@ body.login-page {
 
 .login-box form input.form-control {
     padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.5);
     border: none;
     border-bottom: 2px solid #2c3e50;
     border-radius: 8px;
@@ -58,7 +58,7 @@ body.login-page {
 .login-box form input.form-control:focus {
     outline: none;
     border-bottom: 2px solid #2c3e50;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.7);
     box-shadow: none;
 }
 
