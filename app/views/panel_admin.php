@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    header("Location: /?ruta=login");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
