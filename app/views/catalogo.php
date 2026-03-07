@@ -60,7 +60,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Catálogo - Panadería</title>
-    <link rel="stylesheet" href="/public/assets/css/estilos.css"></head>
+    <link rel="stylesheet" href="public/assets/css/estilos.css"></head>
 <body>
     <div class="navbar">
         <h2>Panadería - Reservas Click & Collect</h2>

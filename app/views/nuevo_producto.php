@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Producto</title>
-    <link rel="stylesheet" href="/public/assets/css/estilos.css">
+    <link rel="stylesheet" href="public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">

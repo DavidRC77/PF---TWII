@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title><?= $titulo ?></title>
-    <link rel="stylesheet" href="/public/assets/css/estilos.css">
+    <link rel="stylesheet" href="public/assets/css/estilos.css">
 </head>
 <body>
     <div class="login-box" style="max-width: 500px;">

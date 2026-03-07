@@ -49,7 +49,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Reservas de Hoy</title>
-<link rel="stylesheet" href="/public/assets/css/estilos.css"></head>
+<link rel="stylesheet" href="public/assets/css/estilos.css"></head>
 <body>
     <div class="navbar">
         <h2>Reservas de Hoy</h2>

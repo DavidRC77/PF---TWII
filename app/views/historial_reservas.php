@@ -48,7 +48,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>Historial de Reservas</title>
-    <link rel="stylesheet" href="/public/assets/css/estilos.css">
+    <link rel="stylesheet" href="public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">

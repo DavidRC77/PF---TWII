@@ -51,7 +51,7 @@ if ($reserva_id) {
 <head>
     <meta charset="UTF-8">
     <title>Caja Registradora</title>
-    <link rel="stylesheet" href="/public/assets/css/estilos.css">
+    <link rel="stylesheet" href="public/assets/css/estilos.css">
 </head>
 <body>
     <div class="navbar">
