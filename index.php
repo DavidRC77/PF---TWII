@@ -59,6 +59,9 @@ switch ($ruta) {
     case 'procesar_venta':
         require_once __DIR__ . '/app/controllers/procesar_venta.php';
         break;
+    case 'accion_login':
+        require_once __DIR__ . '/app/controllers/accion_login.php';
+        break;
     case 'accion_usuario':
         require_once __DIR__ . '/app/controllers/accion_usuario.php';
         break;

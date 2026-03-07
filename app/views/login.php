@@ -1,45 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../models/conexion.php';
-
-$error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $correo = trim($_POST['correo']);
-    $clave  = trim($_POST['clave']);
-
-    if (!empty($correo) && !empty($clave)) {
-        try {
-            $conexion = new Conexion();
-            $pdo = $conexion->conectar();
-
-            $stmt = $pdo->prepare(
-                "SELECT id, nombre_completo, clave, rol FROM usuarios WHERE correo = :correo AND activo = true"
-            );
-            $stmt->execute(['correo' => $correo]);
-            $usuario = $stmt->fetch();
-
-            if ($usuario && password_verify($clave, $usuario['clave'])) {
-                $_SESSION['usuario_id']      = $usuario['id'];
-                $_SESSION['nombre_completo'] = $usuario['nombre_completo'];
-                $_SESSION['rol']             = $usuario['rol'];
-
-                if ($usuario['rol'] === 'admin') {
-                    header("Location: /?ruta=panel_admin");
-                } else {
-                    header("Location: /?ruta=catalogo");
-                }
-                exit();
-            } else {
-                $error = "Correo o contraseña incorrectos.";
-            }
-        } catch (PDOException $e) {
-            $error = "Error de sistema: " . $e->getMessage();
-        }
-    } else {
-        $error = "Por favor, complete todos los campos.";
-    }
-}
+$error = $_GET['error'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -68,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
             
-            <form method="POST" action="" class="w-100">
+            <form method="POST" action="/?ruta=accion_login" class="w-100">
                 <input type="email" name="correo" class="form-control mb-3" placeholder="Correo electrónico" required>
                 <input type="password" name="clave" class="form-control mb-3" placeholder="Contraseña" required>
                 <button type="submit" class="btn w-100 text-white mt-2 login-btn">Ingresar</button>
