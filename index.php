@@ -30,7 +30,7 @@ switch ($ruta) {
         require_once __DIR__ . '/app/views/mis_reservas.php';
         break;
     case 'nuevo_producto':
-        require_once __DIR__ . '/app/views/nuevo_producto.php';
+        require_once __DIR__ . '/app/views/producto_form.php';
         break;
     case 'producto_form':
         require_once __DIR__ . '/app/views/producto_form.php';
