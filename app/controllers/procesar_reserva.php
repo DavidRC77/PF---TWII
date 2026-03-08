@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 
     if ($total_items_solicitados > $limite_panes) {
+        session_write_close();
         header("Location: /?ruta=catalogo");
         exit();
     }
@@ -83,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 }
 
+session_write_close();
 header("Location: /?ruta=catalogo");
 exit();
 ?>

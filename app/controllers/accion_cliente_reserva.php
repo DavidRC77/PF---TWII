@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['accion'
     }
 }
 
+session_write_close();
 header("Location: /?ruta=catalogo");
 exit();
 ?>
