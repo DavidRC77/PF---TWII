@@ -25,15 +25,16 @@ try {
     $usuario = $stmt->fetch();
 
     if ($usuario && password_verify($clave, $usuario['clave'])) {
-        $_SESSION['usuario_id']       = $usuario['id'];
-        $_SESSION['nombre_completo']  = $usuario['nombre_completo'];
-        $_SESSION['rol']              = $usuario['rol'];
+        require_once __DIR__ . '/../models/jwt_session.php';
+        JwtSession::create([
+            'usuario_id'      => $usuario['id'],
+            'nombre_completo' => $usuario['nombre_completo'],
+            'rol'             => $usuario['rol'],
+        ]);
 
         if ($usuario['rol'] === 'admin') {
-            session_write_close();
             header("Location: /?ruta=panel_admin");
         } else {
-            session_write_close();
             header("Location: /?ruta=catalogo");
         }
         exit();
