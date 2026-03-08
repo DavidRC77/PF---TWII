@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
     }
 }
 
+session_write_close();
 header("Location: /?ruta=inventario");
 exit();
 ?>

@@ -7,7 +7,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 .navbar h2 { margin: 0; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; }
 .navbar > div { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .saludo-usuario { color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 300; font-style: italic; }
-.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
+.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
 .navbar a:hover { background-color: #c0392b; transform: translateY(-1px); }
 .btn-mis-reservas { background-color: #2980b9 !important; }
 .btn-mis-reservas:hover { background-color: #1f6391 !important; }
@@ -43,7 +43,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 .nombre-item-carrito { flex: 1; color: #2c3e50; font-weight: 600; }
 .precio-item { color: #27ae60; font-weight: 700; white-space: nowrap; }
 .controles-cantidad { display: flex; gap: 4px; }
-.btn-cant { width: 28px; height: 28px; border: none; border-radius: 6px; font-size: 0.9rem; font-weight: 700; cursor: pointer; padding: 0; transition: all 0.2s; line-height: 1; }
+.btn-cant { width: 28px; height: 28px; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; padding: 0; transition: all 0.2s; line-height: 1; }
 .btn-sumar { background-color: #27ae60; color: #fff; }
 .btn-sumar:hover { background-color: #1e9950; }
 .btn-restar { background-color: #e74c3c; color: #fff; }
@@ -65,3 +65,18 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
     .columna-sidebar { position: static; }
 }
 @media (max-width: 480px) { .grid { grid-template-columns: 1fr 1fr; } .navbar { padding: 10px 14px; } .navbar h2 { font-size: 1rem; } }
+
+/* BOTÓN DESACTIVADO / AGOTADO */
+.btn-agotado { display: block; width: 100%; padding: 9px 0; background-color: #bdc3c7; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: not-allowed; }
+
+/* ACCIONES DE RESERVA ACTIVA */
+.formulario-acciones { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+.btn-extender { display: block; width: 100%; padding: 10px 0; background-color: #2980b9; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.25s; }
+.btn-extender:hover { background-color: #1f6391; transform: translateY(-1px); box-shadow: 0 5px 14px rgba(41,128,185,0.3); }
+.btn-cancelar-pedido { display: block; width: 100%; padding: 10px 0; background-color: #e74c3c; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.25s; }
+.btn-cancelar-pedido:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 5px 14px rgba(231,76,60,0.3); }
+
+/* TEMPORIZADOR RESERVA */
+.temporizador-caja { background: linear-gradient(90deg, #fff3cd, #fefbf0); border: 1px solid #c8a96e; border-radius: 10px; padding: 12px 16px; margin: 12px 0; text-align: center; }
+.temporizador-caja p { font-size: 0.75rem; color: #856404; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 4px; }
+.temporizador-caja h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 600; color: #2c3e50; margin: 0; }

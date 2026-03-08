@@ -18,7 +18,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 }
 .navbar h2 { margin: 0; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; }
 .navbar > div { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
+.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
 .navbar a:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(231,76,60,0.35); }
 .contenedor-principal { padding: 28px 28px; max-width: 1400px; margin: 0 auto; }
 .barra-superior { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
@@ -46,7 +46,7 @@ table tbody td[colspan] { text-align: center; color: #8e9fac; font-style: italic
 .estado-cancelado  { background-color: #fdecea; color: #842029; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; display: inline-block; }
 .estado-expirado   { background-color: #f0f0f0; color: #6c757d; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; display: inline-block; }
 
-/* -- BARRA BÚSQUEDA ------------------------------- */
+/* -- BARRA Bï¿½SQUEDA ------------------------------- */
 .barra-busqueda { display: flex; gap: 10px; max-width: 560px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; }
 .barra-busqueda input[type="text"] { flex: 1; min-width: 0; padding: 10px 16px; border: 1px solid #ddd; border-radius: 8px; font-family: '"'"'Poppins'"'"', sans-serif; font-size: 0.875rem; color: #2c3e50; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; }
 .barra-busqueda input[type="text"]:focus { outline: none; border-color: #c8a96e; box-shadow: 0 0 0 3px rgba(200,169,110,0.15); }

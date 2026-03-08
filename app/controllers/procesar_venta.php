@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
         }
 
         $pdo->commit();
+        session_write_close();
         header("Location: /?ruta=caja&exito=1");
         exit();
 
@@ -67,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 }
 
+session_write_close();
 header("Location: /?ruta=caja");
 exit();
 ?>

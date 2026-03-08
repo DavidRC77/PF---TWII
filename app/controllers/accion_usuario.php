@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (PDOException $e) { die("Error: " . $e->getMessage()); }
 }
 
+session_write_close();
 header("Location: /?ruta=gestionar_usuarios");
 exit();
 ?>

@@ -1,4 +1,8 @@
 <?php
+ini_set('session.gc_maxlifetime', 7200);
+ini_set('session.cookie_lifetime', 0);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.use_strict_mode', 1);
 session_start();
 $ruta = $_GET['ruta'] ?? 'login';
 

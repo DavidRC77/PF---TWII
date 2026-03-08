@@ -27,13 +27,13 @@ body {
 }
 .navbar h2 { margin: 0; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; }
 .navbar > div { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
+.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; transition: all 0.25s; }
 .navbar a:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(231,76,60,0.35); }
 
 /* -- CONTENEDOR ----------------------------------- */
 .contenedor-principal { padding: 28px 28px; max-width: 1400px; margin: 0 auto; }
 
-/* -- BARRA BÚSQUEDA ------------------------------- */
+/* -- BARRA Bï¿½SQUEDA ------------------------------- */
 .barra-busqueda {
     display: flex;
     gap: 10px;
@@ -90,16 +90,16 @@ table tbody td:first-child { font-weight: 700; color: #2c3e50; }
 .estado-cancelado  { background-color: #fdecea; color: #842029; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; display: inline-block; }
 .estado-expirado   { background-color: #f0f0f0; color: #6c757d; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; display: inline-block; }
 
-/* -- BOTONES ACCIÓN ------------------------------- */
+/* -- BOTONES ACCIï¿½N ------------------------------- */
 .btn-cobrar {
     display: inline-flex; align-items: center;
     padding: 7px 14px; background-color: #27ae60; color: #fff;
-    text-decoration: none; border-radius: 7px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; transition: all 0.2s;
+    text-decoration: none; border-radius: 8px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; transition: all 0.2s;
 }
 .btn-cobrar:hover { background-color: #1e9950; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(39,174,96,0.3); color: #fff; }
 .btn-cancelar {
     padding: 7px 14px; background-color: #e74c3c; color: #fff;
-    border: none; border-radius: 7px; font-family: 'Poppins', sans-serif;
+    border: none; border-radius: 8px; font-family: 'Poppins', sans-serif;
     font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s;
 }
 .btn-cancelar:hover { background-color: #c0392b; transform: translateY(-1px); }

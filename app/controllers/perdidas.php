@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['cantida
     }
 }
 
+session_write_close();
 header("Location: /?ruta=inventario");
 exit();
 ?>

@@ -7,7 +7,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 .navbar h2 { margin: 0; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; letter-spacing: 0.3px; }
 .navbar > div { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .saludo-usuario { color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 300; font-style: italic; }
-.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 6px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; letter-spacing: 0.2px; transition: all 0.25s; }
+.navbar a { color: #fff; text-decoration: none; padding: 7px 16px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; background-color: #e74c3c; letter-spacing: 0.2px; transition: all 0.25s; }
 .navbar a:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(231,76,60,0.4); }
 
 /* ENCABEZADO */

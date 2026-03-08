@@ -17,7 +17,7 @@
     </div>
 
     <?php if(isset($_GET['exito'])): ?>
-        <div style="background-color: #d4edda; color: #155724; padding: 15px; margin: 20px; border-radius: 4px; text-align: center; font-weight: bold;">
+        <div style="background-color: #d4edda; color: #155724; padding: 15px; margin: 20px; border-radius: 8px; text-align: center; font-weight: bold;">
             ¡Venta registrada correctamente!
         </div>
     <?php endif; ?>
