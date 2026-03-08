@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
