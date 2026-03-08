@@ -59,7 +59,7 @@
                         <input type="hidden" name="accion" value="">
                         <input type="hidden" name="motivo" value="">
                         <?php if (!$reserva_activa['tiempo_ampliado']): ?>
-                            <button type="button" onclick="document.getElementById('form-accion-reserva').accion.value='extender'; document.getElementById('form-accion-reserva').submit();" class="btn-extender">Extender Reserva (+15 min)</button>
+                            <button type="button" onclick="document.getElementById('form-accion-reserva').elements['accion'].value='extender'; document.getElementById('form-accion-reserva').submit();" class="btn-extender">Extender Reserva (+15 min)</button>
                         <?php endif; ?>
                         <button type="button" onclick="cancelarPorCliente()" class="btn-cancelar-pedido">Cancelar Pedido</button>
                     </form>
@@ -216,8 +216,8 @@
             let motivo = prompt("¿Por qué deseas cancelar el pedido?");
             if (motivo !== null && motivo.trim() !== "") {
                 let form = document.getElementById('form-accion-reserva');
-                form.accion.value = 'cancelar';
-                form.motivo.value = motivo;
+                form.elements['accion'].value = 'cancelar';
+                form.elements['motivo'].value = motivo;
                 form.submit();
             }
         }

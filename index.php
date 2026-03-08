@@ -1,4 +1,5 @@
 <?php
+session_start();
 $ruta = $_GET['ruta'] ?? 'login';
 
 switch ($ruta) {

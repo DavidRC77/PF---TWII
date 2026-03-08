@@ -79,7 +79,7 @@
                                         <input type="hidden" name="motivo" value="">
                                         
                                         <a href="/?ruta=caja&reserva_id=<?= $res['id'] ?>" style="background-color: #27ae60; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold; display: flex; align-items: center;">Cobrar Ticket</a>
-                                        <button type="submit" onclick="this.form.nuevo_estado.value='cancelado';" style="margin: 0; padding: 5px 10px; background-color: #c0392b; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancelar</button>
+                                        <button type="submit" onclick="this.form.elements['nuevo_estado'].value='cancelado';" style="margin: 0; padding: 5px 10px; background-color: #c0392b; color: white; border: none; border-radius: 4px; cursor: pointer;">Cancelar</button>
                                     </form>
                                 <?php else: ?>
                                     <span style="color: <?= $res['estado'] === 'entregado' ? '#27ae60' : '#c0392b' ?>; font-weight: bold;">
@@ -100,12 +100,12 @@
 
     <script>
         function procesarAccionAdmin(form) {
-            if (form.nuevo_estado.value === 'cancelado') {
+            if (form.elements['nuevo_estado'].value === 'cancelado') {
                 let motivo = prompt("Escribe el motivo de la cancelación (El cliente verá este mensaje):");
                 if (motivo === null || motivo.trim() === "") {
                     return false;
                 }
-                form.motivo.value = motivo;
+                form.elements['motivo'].value = motivo;
             }
             return true;
         }
