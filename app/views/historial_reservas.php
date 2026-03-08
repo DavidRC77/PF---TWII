@@ -18,6 +18,7 @@
 
     <div class="contenedor-principal">
         <form class="barra-busqueda" action="/?ruta=historial_reservas" method="GET">
+            <input type="hidden" name="ruta" value="historial_reservas">
             <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por N° Ticket o DNI...">
             <button type="submit">Buscar</button>
             <?php if($busqueda !== ''): ?>

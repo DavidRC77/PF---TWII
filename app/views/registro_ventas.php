@@ -19,6 +19,7 @@
     <div class="contenedor-principal">
         <div class="barra-superior">
             <form class="barra-busqueda" action="/?ruta=registro_ventas" method="GET">
+                <input type="hidden" name="ruta" value="registro_ventas">
                 <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por DNI o Fecha (YYYY-MM-DD)...">
                 <button type="submit">Buscar</button>
                 <?php if($busqueda !== ''): ?>
