@@ -31,13 +31,6 @@
     <?php endif; ?>
 
     <div class="layout-catalogo">
-        <div class="columna-productos">
-            <h3>Nuestros Panes Recién Horneados</h3>
-            <div class="grid" id="contenedor-productos">
-                <p>Cargando catálogo...</p>
-            </div>
-        </div>
-
         <div class="columna-sidebar">
             <?php if ($reserva_activa): ?>
                 <div class="tarjeta-pedido">
@@ -77,6 +70,13 @@
                     </form>
                 </div>
             <?php endif; ?>
+        </div>
+
+        <div class="columna-productos">
+            <h3>Nuestros Panes Recién Horneados</h3>
+            <div class="grid" id="contenedor-productos">
+                <p>Cargando catálogo...</p>
+            </div>
         </div>
     </div>
 

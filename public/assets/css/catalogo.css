@@ -17,7 +17,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 .alerta-cancelado { background: linear-gradient(90deg, #fff3cd, #fefefe); color: #856404; border-left: 4px solid #c8a96e; padding: 14px 24px; font-size: 0.9rem; line-height: 1.6; }
 
 /* LAYOUT 2 COLUMNAS */
-.layout-catalogo { display: grid; grid-template-columns: 1fr 370px; gap: 28px; padding: 28px 32px; max-width: 1440px; margin: 0 auto; }
+.layout-catalogo { display: grid; grid-template-columns: 370px 1fr; gap: 28px; padding: 28px 32px; max-width: 1440px; margin: 0 auto; }
 .columna-productos h3 { font-family: 'Playfair Display', serif; color: #2c3e50; font-size: 1.4rem; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid #e2d1c3; }
 
 /* GRID DE PRODUCTOS */
@@ -59,7 +59,7 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 .countdown-timer { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: #2c3e50; }
 
 /* RESPONSIVE */
-@media (max-width: 1100px) { .layout-catalogo { grid-template-columns: 1fr 320px; padding: 20px 20px; } }
+@media (max-width: 1100px) { .layout-catalogo { grid-template-columns: 320px 1fr; padding: 20px 20px; } }
 @media (max-width: 820px) {
     .layout-catalogo { grid-template-columns: 1fr; padding: 16px; }
     .columna-sidebar { position: static; }

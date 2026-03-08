@@ -23,12 +23,12 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 /* GRID DE TARJETAS */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
 
-.tarjeta-admin { background: #fff; border-radius: 16px; padding: 32px 26px; text-align: center; box-shadow: 0 2px 12px rgba(44,62,80,0.07), 0 1px 3px rgba(44,62,80,0.05); border: 1px solid #f0ebe4; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+.tarjeta-admin { background: #fff; border-radius: 16px; padding: 32px 26px; text-align: center; box-shadow: 0 2px 12px rgba(44,62,80,0.07), 0 1px 3px rgba(44,62,80,0.05); border: 1px solid #f0ebe4; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; display: flex; flex-direction: column; align-items: center; }
 .tarjeta-admin:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(44,62,80,0.14); border-color: #c8a96e; }
 .tarjeta-admin h3 { font-family: 'Playfair Display', serif; color: #2c3e50; font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; }
-.tarjeta-admin p { color: #8e9fac; font-size: 0.85rem; margin-bottom: 22px; line-height: 1.6; }
+.tarjeta-admin p { color: #8e9fac; font-size: 0.85rem; margin-bottom: 22px; line-height: 1.6; flex: 1; }
 
-.btn-panel { display: inline-block; padding: 11px 28px; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.875rem; letter-spacing: 0.2px; transition: all 0.25s; box-shadow: 0 3px 10px rgba(0,0,0,0.12); }
+.btn-panel { display: inline-block; padding: 11px 28px; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.875rem; letter-spacing: 0.2px; transition: all 0.25s; box-shadow: 0 3px 10px rgba(0,0,0,0.12); margin-top: auto; }
 .btn-panel:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 7px 18px rgba(0,0,0,0.2); color: #fff; text-decoration: none; }
 
 /* RESPONSIVE */

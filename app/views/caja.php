@@ -23,20 +23,6 @@
     <?php endif; ?>
 
     <div class="layout-catalogo">
-        <div class="columna-productos">
-            <h3><?= $reserva_id ? 'Productos Reservados (Solo lectura)' : 'Catálogo de Mostrador' ?></h3>
-            <div class="grid">
-                <?php foreach ($productos_db as $prod): ?>
-                    <div class="card" style="<?= $reserva_id ? 'opacity: 0.5; pointer-events: none;' : '' ?>">
-                        <h3><?= htmlspecialchars($prod['nombre']) ?></h3>
-                        <h4>Bs. <?= number_format($prod['precio'], 2) ?></h4>
-                        <p>Stock: <b><?= $prod['stock'] ?></b></p>
-                        <button onclick="agregarAlCarrito(<?= $prod['id'] ?>, '<?= addslashes($prod['nombre']) ?>', <?= $prod['precio'] ?>, <?= $prod['stock'] ?>)" class="btn-reservar" style="margin-top: 5px;">Agregar</button>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
         <div class="columna-sidebar">
             <div class="tarjeta-pedido">
                 <h3>Detalle de Venta <?= $reserva_id ? "(Ticket #$reserva_id)" : '' ?></h3>
@@ -56,6 +42,22 @@
                     
                     <button type="submit" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;">Confirmar Pago y Vender</button>
                 </form>
+            </div>
+        </div>
+
+        <div class="columna-productos">
+            <h3><?= $reserva_id ? 'Productos Reservados (Solo lectura)' : 'Catálogo de Mostrador' ?></h3>
+            <div class="grid">
+                <?php foreach ($productos_db as $prod): ?>
+                    <?php $imgUrl = !empty($prod['imagen_url']) ? htmlspecialchars($prod['imagen_url']) : 'https://via.placeholder.com/300x150?text=Sin+Imagen'; ?>
+                    <div class="card" style="<?= $reserva_id ? 'opacity: 0.5; pointer-events: none;' : '' ?>">
+                        <img src="<?= $imgUrl ?>" alt="<?= htmlspecialchars($prod['nombre']) ?>">
+                        <h3><?= htmlspecialchars($prod['nombre']) ?></h3>
+                        <h4>Bs. <?= number_format($prod['precio'], 2) ?></h4>
+                        <p>Stock: <b><?= $prod['stock'] ?></b></p>
+                        <button onclick="agregarAlCarrito(<?= $prod['id'] ?>, '<?= addslashes($prod['nombre']) ?>', <?= $prod['precio'] ?>, <?= $prod['stock'] ?>)" class="btn-reservar" style="margin-top: 5px;">Agregar</button>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
