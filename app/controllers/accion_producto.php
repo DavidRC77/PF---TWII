@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
@@ -31,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
     }
 }
 
-session_write_close();
 header("Location: /?ruta=inventario");
 exit();
 ?>

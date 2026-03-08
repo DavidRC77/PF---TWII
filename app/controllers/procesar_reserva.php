@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../models/conexion.php';
 
 if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'basico' && $_SESSION['rol'] !== 'vip')) {
@@ -18,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 
     if ($total_items_solicitados > $limite_panes) {
-        session_write_close();
         header("Location: /?ruta=catalogo");
         exit();
     }
@@ -84,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     }
 }
 
-session_write_close();
 header("Location: /?ruta=catalogo");
 exit();
 ?>

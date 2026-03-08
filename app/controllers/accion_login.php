@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/../models/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -31,8 +30,10 @@ try {
         $_SESSION['rol']              = $usuario['rol'];
 
         if ($usuario['rol'] === 'admin') {
+            session_write_close();
             header("Location: /?ruta=panel_admin");
         } else {
+            session_write_close();
             header("Location: /?ruta=catalogo");
         }
         exit();
