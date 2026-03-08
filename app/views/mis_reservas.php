@@ -20,6 +20,7 @@
         <?php if ($error_db): ?>
             <div class="error"><?= $error_db ?></div>
         <?php else: ?>
+            <div class="tabla-scroll">
             <table>
                 <thead>
                     <tr>
@@ -55,6 +56,7 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+            </div>
         <?php endif; ?>
     </div>
 </body>

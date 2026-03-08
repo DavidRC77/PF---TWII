@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="public/assets/css/producto_form.css">
 </head>
 <body>
-    <div class="login-box" style="max-width: 500px;">
+    <div class="login-box">
         <h2><?= $titulo ?></h2>
         <form action="/?ruta=accion_producto" method="POST">
             <input type="hidden" name="id_producto" value="<?= $p['id'] ?>">
@@ -19,12 +19,12 @@
             <label>Descripción (Opcional):</label>
             <input type="text" name="descripcion" value="<?= htmlspecialchars($p['descripcion']) ?>">
             
-            <div style="display: flex; gap: 10px;">
-                <div style="flex: 1;">
+            <div class="fila-dos-campos">
+                <div>
                     <label>Precio Unitario (Bs.):</label>
                     <input type="number" step="0.10" name="precio" value="<?= htmlspecialchars($p['precio']) ?>" required>
                 </div>
-                <div style="flex: 1;">
+                <div>
                     <label>Cantidad por Tanda:</label>
                     <input type="number" name="cantidad_por_tanda" value="<?= htmlspecialchars($p['cantidad_por_tanda']) ?>" required>
                 </div>
@@ -33,8 +33,8 @@
             <label>URL de la Imagen (Opcional):</label>
             <input type="text" name="imagen_url" value="<?= htmlspecialchars($p['imagen_url']) ?>">
 
-            <button type="submit" name="accion" value="guardar" style="background-color: #27ae60; margin-top:15px;">Guardar Producto</button>
-            <a href="/?ruta=inventario" style="display:block; text-align:center; margin-top:15px; color:#7f8c8d;">Cancelar</a>
+            <button type="submit" name="accion" value="guardar">Guardar Producto</button>
+            <a href="/?ruta=inventario" class="enlace-cancelar">Cancelar</a>
         </form>
     </div>
 </body>

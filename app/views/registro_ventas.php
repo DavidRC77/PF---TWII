@@ -17,23 +17,21 @@
     </div>
 
     <div class="contenedor-principal">
-        <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-            <form action="/?ruta=registro_ventas" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
-                <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por DNI o Fecha (YYYY-MM-DD)..." style="margin: 0; flex: 1;">
-                <button type="submit" style="width: auto; margin: 0; background-color: #2980b9;">Buscar</button>
+        <div class="barra-superior">
+            <form class="barra-busqueda" action="/?ruta=registro_ventas" method="GET">
+                <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por DNI o Fecha (YYYY-MM-DD)...">
+                <button type="submit">Buscar</button>
                 <?php if($busqueda !== ''): ?>
-                    <a href="/?ruta=registro_ventas" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
+                    <a href="/?ruta=registro_ventas">Limpiar</a>
                 <?php endif; ?>
             </form>
-            
-            <div style="background-color: #27ae60; color: white; padding: 10px 20px; border-radius: 4px; font-size: 1.2em; font-weight: bold;">
-                Total Reporte: Bs. <?= number_format($total_filtrado, 2) ?>
-            </div>
+            <div class="badge-total">Total Reporte: Bs. <?= number_format($total_filtrado, 2) ?></div>
         </div>
 
         <?php if ($error_db): ?>
             <div class="error"><?= $error_db ?></div>
         <?php else: ?>
+            <div class="tabla-scroll">
             <table>
                 <thead>
                     <tr>
@@ -78,6 +76,7 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+            </div>
         <?php endif; ?>
     </div>
 </body>

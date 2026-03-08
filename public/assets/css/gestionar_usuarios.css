@@ -108,10 +108,44 @@ table tbody td {
     vertical-align: middle;
 }
 
+/* ── BOTONES NAVBAR ADICIONALES ────────────────── */
+.btn-nuevo {
+    display: inline-block;
+    padding: 7px 16px;
+    background-color: #27ae60;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+.btn-nuevo:hover { background-color: #1e9950; color: #fff; text-decoration: none; transform: translateY(-1px); }
+.btn-volver {
+    display: inline-block;
+    padding: 7px 16px;
+    background-color: #34495e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+.btn-volver:hover { background-color: #2c3e50; color: #fff; text-decoration: none; transform: translateY(-1px); }
+
 /* ── BADGES ROL ────────────────────────────────── */
-.badge-admin   { color: #8e44ad; font-weight: 700; }
-.badge-vip     { color: #f39c12; font-weight: 700; }
-.badge-basico  { color: #2980b9; font-weight: 700; }
+.badge-rol { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px; }
+.badge-admin   { background-color: #ede0f5; color: #6c3483; }
+.badge-vip     { background-color: #fef3cd; color: #856404; }
+.badge-basico  { background-color: #d0e8fb; color: #1a5276; }
+
+/* ── FILA SUSPENDIDA ───────────────────────────── */
+tr.fila-suspendida { opacity: 0.55; }
+
+/* ── ACCIONES USUARIO ──────────────────────────── */
+.acciones-usuario { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.acciones-usuario form { margin: 0; display: flex; gap: 5px; }
 
 /* ── BOTONES DE ACCIÓN ─────────────────────────── */
 .btn-mis-reservas {
@@ -169,6 +203,16 @@ table tbody td {
     background-color: #27b860;
     transform: translateY(-1px);
 }
+
+.btn-desactivar { background-color: #e67e22; color: #fff; }
+.btn-desactivar:hover { background-color: #d35400; }
+.btn-activar { background-color: #27ae60; color: #fff; }
+.btn-activar:hover { background-color: #1e9950; }
+
+/* ── BADGES ESTADO ─────────────────────────────── */
+.badge-activo     { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; background-color: #d1f2e4; color: #155724; }
+.badge-suspendido { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; background-color: #fdecea; color: #842029; }
+.badge-penalizado { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; background-color: #fff3cd; color: #856404; margin-top: 4px; }
 
 /* ── RESPONSIVE ────────────────────────────────── */
 @media (max-width: 768px) {

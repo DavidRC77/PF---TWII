@@ -17,19 +17,18 @@
     </div>
 
     <div class="contenedor-principal">
-        <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-            <form action="/?ruta=historial_reservas" method="GET" style="display: flex; gap: 10px; width: 100%; max-width: 500px;">
-                <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por N° Ticket o DNI..." style="margin: 0; flex: 1;">
-                <button type="submit" style="width: auto; margin: 0; background-color: #2980b9;">Buscar</button>
-                <?php if($busqueda !== ''): ?>
-                    <a href="/?ruta=historial_reservas" style="padding: 10px; background-color: #95a5a6; color: white; text-decoration: none; border-radius: 4px;">Limpiar</a>
-                <?php endif; ?>
-            </form>
-        </div>
+        <form class="barra-busqueda" action="/?ruta=historial_reservas" method="GET">
+            <input type="text" name="busqueda" value="<?= htmlspecialchars($busqueda) ?>" placeholder="Buscar por N° Ticket o DNI...">
+            <button type="submit">Buscar</button>
+            <?php if($busqueda !== ''): ?>
+                <a href="/?ruta=historial_reservas">Limpiar</a>
+            <?php endif; ?>
+        </form>
 
         <?php if ($error_db): ?>
             <div class="error"><?= $error_db ?></div>
         <?php else: ?>
+            <div class="tabla-scroll">
             <table>
                 <thead>
                     <tr>
@@ -77,6 +76,7 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+            </div>
         <?php endif; ?>
     </div>
 </body>

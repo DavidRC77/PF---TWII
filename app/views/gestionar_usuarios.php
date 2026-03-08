@@ -11,13 +11,14 @@
     <div class="navbar">
         <h2>Control Total de Usuarios</h2>
         <div>
-            <a href="/?ruta=usuario_form" style="background-color: #27ae60; margin-right: 10px;">+ Nuevo Usuario</a>
-            <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver</a>
+            <a href="/?ruta=usuario_form" class="btn-nuevo">+ Nuevo Usuario</a>
+            <a href="/?ruta=panel_admin" class="btn-volver">Volver</a>
             <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>
 
     <div class="contenedor-principal">
+        <div class="tabla-scroll">
         <table>
             <thead>
                 <tr>
@@ -31,29 +32,33 @@
             </thead>
             <tbody>
                 <?php foreach ($usuarios as $u): ?>
-                    <tr style="opacity: <?= $u['activo'] ? '1' : '0.5' ?>;">
+                    <tr <?= $u['activo'] ? '' : 'class="fila-suspendida"' ?>>
                         <td><strong><?= htmlspecialchars($u['dni']) ?></strong></td>
                         <td><?= htmlspecialchars($u['nombre_completo']) ?></td>
                         <td>
                             <?= htmlspecialchars($u['celular']) ?><br>
                             <small><?= htmlspecialchars($u['correo']) ?></small>
                         </td>
-                        <td><strong><?= strtoupper($u['rol']) ?></strong></td>
+                        <td><?php
+                            $rol = strtolower($u['rol']);
+                            $claseRol = $rol === 'admin' ? 'badge-admin' : ($rol === 'vip' ? 'badge-vip' : 'badge-basico');
+                            echo '<span class="badge-rol ' . $claseRol . '">' . strtoupper($u['rol']) . '</span>';
+                        ?></td>
                         <td>
-                            <?= $u['activo'] ? '<span style="color:green">✔ Activo</span>' : '<span style="color:red">✘ Suspendido</span>' ?>
-                            <?= $u['castigado'] ? '<br><small style="color:orange">⚠ Penalizado</small>' : '' ?>
+                            <?= $u['activo'] ? '<span class="badge-activo">✔ Activo</span>' : '<span class="badge-suspendido">✘ Suspendido</span>' ?>
+                            <?= $u['castigado'] ? '<br><span class="badge-penalizado">⚠ Penalizado</span>' : '' ?>
                         </td>
                         <td>
-                            <div style="display:flex; gap:5px;">
-                                <a href="/?ruta=usuario_form&id=<?= $u['id'] ?>" class="btn-mis-reservas" style="padding:5px 10px; font-size:12px;">Editar</a>
+                            <div class="acciones-usuario">
+                                <a href="/?ruta=usuario_form&id=<?= $u['id'] ?>" class="btn-mis-reservas">Editar</a>
                                 
-                                <form action="/?ruta=accion_usuario" method="POST" style="margin:0;">
+                                <form action="/?ruta=accion_usuario" method="POST">
                                     <input type="hidden" name="id_usuario" value="<?= $u['id'] ?>">
-                                    <button type="submit" name="accion" value="toggle_activo" style="padding:5px 10px; font-size:12px; border:none; border-radius:4px; cursor:pointer; color:white; background-color: <?= $u['activo'] ? '#e67e22' : '#27ae60' ?>;">
+                                    <button type="submit" name="accion" value="toggle_activo" class="btn-toggle-activo <?= $u['activo'] ? 'btn-desactivar' : 'btn-activar' ?>">
                                         <?= $u['activo'] ? 'Desactivar' : 'Activar' ?>
                                     </button>
                                     <?php if ($u['castigado']): ?>
-                                        <button type="submit" name="accion" value="quitar_penalizacion" style="padding:5px 10px; font-size:12px; border:none; border-radius:4px; cursor:pointer; color:white; background-color: #2ecc71;">Perdonar</button>
+                                        <button type="submit" name="accion" value="quitar_penalizacion" class="btn-perdonar">Perdonar</button>
                                     <?php endif; ?>
                                 </form>
                             </div>
@@ -62,6 +67,7 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </div>
     </div>
 </body>
 </html>
