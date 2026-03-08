@@ -1,10 +1,15 @@
 <?php
-ini_set('session.gc_maxlifetime', 7200);
-ini_set('session.cookie_lifetime', 0);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.use_strict_mode', 1);
-session_start();
 $ruta = $_GET['ruta'] ?? 'login';
+
+// api_stock es un endpoint público (solo devuelve JSON de productos),
+// no necesita sesión. Excluirlo evita la race condition de locks de
+// archivos de sesión en Windows cuando hay polling paralelo + form submit.
+if ($ruta !== 'api_stock') {
+    ini_set('session.gc_maxlifetime', 7200);
+    ini_set('session.cookie_lifetime', 0);
+    ini_set('session.use_only_cookies', 1);
+    session_start();
+}
 
 switch ($ruta) {
     case 'login':

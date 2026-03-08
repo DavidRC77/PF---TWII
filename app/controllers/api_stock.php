@@ -1,5 +1,4 @@
 <?php
-session_write_close(); // No necesita escribir sesión, liberar el lock de inmediato
 header('Content-Type: application/json');
 require_once __DIR__ . '/../models/conexion.php';
 
