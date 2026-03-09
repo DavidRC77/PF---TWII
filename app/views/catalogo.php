@@ -104,14 +104,13 @@
                         const imgUrl = prod.imagen_url ? prod.imagen_url : 'https://via.placeholder.com/300x150?text=Sin+Imagen';
                         const stockInfo = prod.stock > 0 ? `<p>Stock disponible: <b>${prod.stock}</b></p>` : `<p class="agotado">¡Agotado!</p>`;
 
-                        // Próxima tanda: mostrar countdown si hay fecha futura (dentro de 4 horas)
+                        // Próxima tanda: mostrar countdown si hay hora futura configurada
                         let proximaTandaHtml = '';
                         if (prod.proxima_tanda) {
                             const tandasDate = new Date(prod.proxima_tanda);
-                            const ahora = new Date();
-                            const diffMs = tandasDate - ahora;
-                            if (diffMs > 0 && diffMs < 4 * 60 * 60 * 1000) {
-                                proximaTandaHtml = `<p class="proxima-tanda">🔥 Nuevos panes en <span class="countdown" data-target="${tandasDate.toISOString()}">...</span></p>`;
+                            const diffMs = tandasDate - new Date();
+                            if (diffMs > 0) {
+                                proximaTandaHtml = `<p class="proxima-tanda" id="tanda-${prod.id}">🔥 Nuevos panes en <span class="countdown" data-target="${tandasDate.toISOString()}">...</span></p>`;
                             }
                         }
                         
@@ -292,15 +291,19 @@
                 const target = new Date(el.dataset.target);
                 const diffMs = target - new Date();
                 if (diffMs <= 0) {
-                    el.textContent = '¡ya están listos!';
-                    el.style.color = '#27ae60';
+                    // Ocultar el párrafo completo cuando ya pasó
+                    const p = el.closest('.proxima-tanda');
+                    if (p) p.style.display = 'none';
                 } else {
                     const s = Math.ceil(diffMs / 1000);
-                    const min = Math.floor(s / 60);
+                    const h = Math.floor(s / 3600);
+                    const min = Math.floor((s % 3600) / 60);
                     const seg = s % 60;
-                    el.textContent = min > 0
-                        ? min + ' min ' + seg.toString().padStart(2, '0') + 's'
-                        : seg + 's';
+                    el.textContent = h > 0
+                        ? h + 'h ' + min.toString().padStart(2, '0') + 'm'
+                        : min > 0
+                            ? min + ' min ' + seg.toString().padStart(2, '0') + 's'
+                            : seg + 's';
                 }
             });
         }
