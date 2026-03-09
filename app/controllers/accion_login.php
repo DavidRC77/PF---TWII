@@ -32,7 +32,7 @@ try {
             'rol'             => $usuario['rol'],
         ]);
 
-        if ($usuario['rol'] === 'admin') {
+        if ($usuario['rol'] === 'admin' || $usuario['rol'] === 'empleado') {
             header("Location: /?ruta=panel_admin");
         } else {
             header("Location: /?ruta=catalogo");
