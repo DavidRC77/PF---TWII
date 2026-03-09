@@ -27,22 +27,42 @@
     <div class="layout-catalogo">
         <div class="columna-sidebar">
             <div class="tarjeta-pedido">
-                <h3>Detalle de Venta <?= $reserva_id ? "(Ticket #$reserva_id)" : '' ?></h3>
-                
+                <h3>Detalle de Venta <?= $reserva_id ? "<span class='badge-ticket'>#$reserva_id</span>" : '' ?></h3>
+
                 <form id="form-caja" action="/?ruta=procesar_venta" method="POST">
                     <input type="hidden" name="reserva_id" value="<?= $reserva_id ?>">
-                    
-                    <label>DNI Cliente:</label>
-                    <input type="text" name="cliente_dni" value="<?= htmlspecialchars($cliente_dni) ?>" placeholder="Ingrese el DNI o NIT del cliente" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
-                    
-                    <label>Nombre Cliente:</label>
-                    <input type="text" name="cliente_nombre" value="<?= htmlspecialchars($cliente_nombre) ?>" placeholder="Ingrese el nombre del cliente" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
-                    
-                    <div id="items-carrito" style="margin-top: 15px; border-top: 2px solid #34495e; padding-top: 15px;"></div>
-                    
-                    <h2 id="total-carrito" class="total-pedido" style="text-align: right; font-size: 1.8em; color: #27ae60;">Total: Bs. 0.00</h2>
-                    
-                    <button type="button" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;" onclick="registrarVenta()">Registrar Venta</button>
+
+                    <div class="campo-caja">
+                        <label class="label-caja">DNI / NIT</label>
+                        <div class="grupo-dni">
+                            <input type="text" name="cliente_dni" id="input-dni"
+                                value="<?= htmlspecialchars($cliente_dni) ?>"
+                                placeholder="Ej: 12345678"
+                                <?= $reserva_id ? 'readonly' : 'oninput="limpiarBusqueda()"' ?>
+                                class="input-caja <?= $reserva_id ? 'readonly' : '' ?>">
+                            <?php if (!$reserva_id): ?>
+                            <button type="button" class="btn-buscar-dni" onclick="buscarCliente()">Buscar</button>
+                            <?php endif; ?>
+                        </div>
+                        <div id="msg-dni" class="slot-msg-dni"></div>
+                    </div>
+
+                    <div class="campo-caja">
+                        <label class="label-caja">Nombre del Cliente</label>
+                        <input type="text" name="cliente_nombre" id="input-nombre"
+                            value="<?= htmlspecialchars($cliente_nombre) ?>"
+                            placeholder="Ej: Juan Pérez"
+                            <?= $reserva_id ? 'readonly' : '' ?>
+                            class="input-caja <?= $reserva_id ? 'readonly' : '' ?>">
+                    </div>
+
+                    <hr class="separador">
+
+                    <div id="items-carrito"></div>
+
+                    <div id="total-carrito" class="total-pedido">Total: Bs. 0.00</div>
+
+                    <button type="button" id="btn-cobrar" class="btn-cobrar" style="display:none;" onclick="registrarVenta()">Registrar Venta</button>
                 </form>
             </div>
         </div>
@@ -67,6 +87,31 @@
     <script>
         const esReserva = <?= $es_reserva ?>;
         let carrito = <?= $items_reserva_json ?>;
+
+        function buscarCliente() {
+            const dni = document.getElementById('input-dni').value.trim();
+            const msg = document.getElementById('msg-dni');
+            if (!dni) { msg.textContent = ''; return; }
+            fetch(`/?ruta=buscar_cliente&dni=${encodeURIComponent(dni)}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.encontrado) {
+                        document.getElementById('input-nombre').value = data.nombre;
+                        msg.className = 'slot-msg-dni msg-ok';
+                        msg.textContent = '\u2713 Cliente encontrado';
+                    } else {
+                        document.getElementById('input-nombre').value = '';
+                        msg.className = 'slot-msg-dni msg-error';
+                        msg.textContent = 'Cliente no registrado — ingrese el nombre manualmente';
+                    }
+                })
+                .catch(() => { msg.textContent = ''; });
+        }
+
+        function limpiarBusqueda() {
+            document.getElementById('msg-dni').className = 'slot-msg-dni';
+            document.getElementById('msg-dni').textContent = '';
+        }
 
         function agregarAlCarrito(id, nombre, precio, maxStock) {
             if (esReserva) return;
