@@ -64,14 +64,14 @@
                 </div>
             <?php else: ?>
                 <div class="tarjeta-pedido">
-                    <h3>Tu Pedido</h3>
+                    <h3>Tu Reserva</h3>
                     <div id="carrito-vacio">
-                        <p>No tienes ningún pan en tu pedido aún.</p>
+                        <p>No tienes ningún pan en tu reserva aún.</p>
                     </div>
                     <form id="form-carrito" action="/?ruta=procesar_reserva" method="POST" style="display: none;">
                         <div id="items-carrito"></div>
                         <h4 id="total-carrito" class="total-pedido">Total: Bs. 0.00</h4>
-                        <button type="submit" class="btn-reservar">Confirmar Pedido</button>
+                        <button type="submit" class="btn-reservar">Confirmar Reserva</button>
                     </form>
                 </div>
             <?php endif; ?>

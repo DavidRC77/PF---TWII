@@ -12,7 +12,7 @@ $esta_penalizado = false;
 $fecha_fin_penalizacion = '';
 $alerta_cancelado_admin = false;
 $motivo_cancelado_admin = '';
-$limite_panes = ($_SESSION['rol'] === 'vip') ? 9999 : 20;
+$limite_panes = ($_SESSION['rol'] === 'vip') ? 200 : 20;
 $es_vip = ($_SESSION['rol'] === 'vip') ? 'true' : 'false';
 
 try {
