@@ -21,7 +21,11 @@
             <div class="tarjeta-admin">
                 <h3>📦 Inventario</h3>
                 <p>Gestionar stock, mermas y productos.</p>
-                <a href="/?ruta=inventario" class="btn-panel" style="background-color: #27ae60;">Ir a Inventario</a>
+                <?php if ($_SESSION['rol'] === 'admin'): ?>
+                    <a href="/?ruta=inventario_admin" class="btn-panel" style="background-color: #27ae60;">Ir a Inventario</a>
+                <?php else: ?>
+                    <a href="/?ruta=inventario" class="btn-panel" style="background-color: #27ae60;">Ir a Inventario</a>
+                <?php endif; ?>
             </div>
 
             <div class="tarjeta-admin">
@@ -39,7 +43,11 @@
             <div class="tarjeta-admin">
                 <h3>👥 Usuarios</h3>
                 <p>Administrar clientes y roles VIP.</p>
-                <a href="/?ruta=gestionar_usuarios" class="btn-panel" style="background-color: #8e44ad;">Gestionar Usuarios</a>
+                <?php if ($_SESSION['rol'] === 'admin'): ?>
+                    <a href="/?ruta=gestionar_usuarios_admin" class="btn-panel" style="background-color: #8e44ad;">Gestionar Usuarios</a>
+                <?php else: ?>
+                    <a href="/?ruta=gestionar_usuarios" class="btn-panel" style="background-color: #8e44ad;">Gestionar Usuarios</a>
+                <?php endif; ?>
             </div>
 
             <div class="tarjeta-admin">

@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/conexion.php';
 
-if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'empleado')) {
+if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
     header("Location: /?ruta=login");
     exit();
 }
@@ -16,4 +16,4 @@ try {
     die("Error: " . $e->getMessage());
 }
 
-require_once __DIR__ . '/../views/gestionar_usuarios.php';
+require_once __DIR__ . '/../views/gestionar_usuarios_admin.php';

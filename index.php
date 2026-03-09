@@ -81,6 +81,18 @@ switch ($ruta) {
     case 'cambiar_estado_reserva':
         require_once __DIR__ . '/app/controllers/cambiar_estado_reserva.php';
         break;
+    case 'inventario_admin':
+        require_once __DIR__ . '/app/controllers/inventario_admin_view.php';
+        break;
+    case 'gestionar_usuarios_admin':
+        require_once __DIR__ . '/app/controllers/gestionar_usuarios_admin_view.php';
+        break;
+    case 'eliminar_producto':
+        require_once __DIR__ . '/app/controllers/eliminar_producto.php';
+        break;
+    case 'eliminar_usuario':
+        require_once __DIR__ . '/app/controllers/eliminar_usuario.php';
+        break;
     case 'api_stock':
         require_once __DIR__ . '/app/controllers/api_stock.php';
         break;

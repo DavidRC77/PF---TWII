@@ -45,6 +45,10 @@ table tbody td { padding: 13px 16px; color: #34495e; font-size: 0.875rem; vertic
 .btn-editar { display: inline-block; padding: 6px 14px; background-color: #c8a96e; color: #fff; text-decoration: none; border-radius: 8px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; transition: all 0.2s; }
 .btn-editar:hover { background-color: #b8944e; transform: translateY(-1px); color: #fff; text-decoration: none; }
 
+/* BOTÓN ELIMINAR (solo admin) */
+.btn-eliminar-admin { padding: 6px 12px; background-color: #e74c3c; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.btn-eliminar-admin:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(231,76,60,0.35); }
+
 /* BOTÓN HORNEAR */
 .btn-hornear { padding: 7px 14px; background-color: #27ae60; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
 .btn-hornear:hover { background-color: #1e9950; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(39,174,96,0.3); }

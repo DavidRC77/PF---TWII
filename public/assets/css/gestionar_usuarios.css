@@ -140,6 +140,7 @@ table tbody td {
 .badge-admin   { background-color: #ede0f5; color: #6c3483; }
 .badge-vip     { background-color: #fef3cd; color: #856404; }
 .badge-basico  { background-color: #d0e8fb; color: #1a5276; }
+.badge-empleado { background-color: #d5f5e3; color: #1e8449; }
 
 /* ── FILA SUSPENDIDA ───────────────────────────── */
 tr.fila-suspendida { opacity: 0.55; }
@@ -209,6 +210,9 @@ tr.fila-suspendida { opacity: 0.55; }
 .btn-desactivar:hover { background-color: #d35400; }
 .btn-activar { background-color: #27ae60; color: #fff; }
 .btn-activar:hover { background-color: #1e9950; }
+
+.btn-eliminar-admin { padding: 6px 12px; background-color: #e74c3c; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.btn-eliminar-admin:hover { background-color: #c0392b; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(231,76,60,0.35); }
 
 /* ── BADGES ESTADO ─────────────────────────────── */
 .badge-activo     { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; background-color: #d1f2e4; color: #155724; }

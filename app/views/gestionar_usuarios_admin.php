@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Usuarios</title>
+    <title>Gestión de Usuarios — Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="public/assets/css/gestionar_usuarios.css">
 </head>
 <body>
     <div class="navbar">
-        <h2>Gestión de Usuarios</h2>
+        <h2>Gestión de Usuarios (Admin)</h2>
         <div>
             <a href="/?ruta=usuario_form" class="btn-nuevo">+ Nuevo Usuario</a>
             <a href="/?ruta=panel_admin" class="btn-volver">Volver</a>
@@ -28,6 +28,7 @@
                     <th>Rol</th>
                     <th>Estado</th>
                     <th>Acciones</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,6 +63,17 @@
                                     <?php endif; ?>
                                 </form>
                             </div>
+                        </td>
+                        <td>
+                            <?php if ($u['id'] != $_SESSION['usuario_id']): ?>
+                            <form action="/?ruta=eliminar_usuario" method="POST" class="form-accion"
+                                  onsubmit="return confirm('¿Eliminar permanentemente al usuario «<?= htmlspecialchars(addslashes($u['nombre_completo'])) ?>»? Esta acción no se puede deshacer.')">
+                                <input type="hidden" name="id_usuario" value="<?= $u['id'] ?>">
+                                <button type="submit" class="btn-eliminar-admin">🗑 Eliminar</button>
+                            </form>
+                            <?php else: ?>
+                                <span style="color:#aaa; font-size:0.78rem;">—</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

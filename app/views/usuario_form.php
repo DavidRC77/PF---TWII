@@ -40,7 +40,10 @@
             <select name="rol">
                 <option value="basico" <?= $u['rol'] == 'basico' ? 'selected' : '' ?>>Básico (Límite 20)</option>
                 <option value="vip" <?= $u['rol'] == 'vip' ? 'selected' : '' ?>>VIP (Límite 200)</option>
-                <option value="admin" <?= $u['rol'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                <?php if ($_SESSION['rol'] === 'admin'): ?>
+                    <option value="empleado" <?= $u['rol'] == 'empleado' ? 'selected' : '' ?>>Empleado</option>
+                    <option value="admin" <?= $u['rol'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
+                <?php endif; ?>
             </select>
 
             <button type="submit" name="accion" value="guardar">Guardar Usuario</button>

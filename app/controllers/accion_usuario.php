@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/conexion.php';
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
+if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'admin' && $_SESSION['rol'] !== 'empleado')) {
     header("Location: /?ruta=login"); exit();
 }
 
@@ -20,6 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $telefono = trim($_POST['telefono']) !== '' ? trim($_POST['telefono']) : null;
             $correo = trim($_POST['correo']);
             $rol = $_POST['rol'];
+            // Empleado solo puede asignar roles de cliente
+            if ($_SESSION['rol'] === 'empleado' && !in_array($rol, ['basico', 'vip'])) {
+                $rol = 'basico';
+            }
             $pass = !empty($_POST['clave']) ? password_hash($_POST['clave'], PASSWORD_BCRYPT) : null;
 
             if ($id) {
@@ -47,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 session_write_close();
-header("Location: /?ruta=gestionar_usuarios");
+$destino = $_SESSION['rol'] === 'admin' ? 'gestionar_usuarios_admin' : 'gestionar_usuarios';
+header("Location: /?ruta=$destino");
 exit();
 ?>
