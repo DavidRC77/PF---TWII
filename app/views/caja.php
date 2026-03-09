@@ -7,6 +7,7 @@
     <title>Caja Registradora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="public/assets/css/caja.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -41,7 +42,7 @@
                     
                     <h2 id="total-carrito" class="total-pedido" style="text-align: right; font-size: 1.8em; color: #27ae60;">Total: Bs. 0.00</h2>
                     
-                    <button type="submit" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;">Registrar Venta</button>
+                    <button type="button" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;" onclick="registrarVenta()">Registrar Venta</button>
                 </form>
             </div>
         </div>
@@ -128,6 +129,88 @@
         }
 
         actualizarCarritoUI();
+
+        function registrarVenta() {
+            const { jsPDF } = window.jspdf;
+
+            const clienteNombre = document.querySelector('[name="cliente_nombre"]').value.trim() || 'Cliente Mostrador';
+            const clienteDni    = document.querySelector('[name="cliente_dni"]').value.trim() || '0';
+            const reservaIdVal  = document.querySelector('[name="reserva_id"]').value;
+
+            // Calcular altura dinámica del ticket
+            const filas = Object.keys(carrito).length;
+            const altoBase = 95;
+            const altoPorFila = 7;
+            const altoTotal = altoBase + filas * altoPorFila;
+
+            const doc = new jsPDF({ unit: 'mm', format: [80, altoTotal], orientation: 'portrait' });
+            const mx = 5;           // margen x
+            const pw = 80;          // ancho papel
+            let y = 10;
+
+            // Encabezado
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(13);
+            doc.text('PANADERÍA EL HORNO', pw / 2, y, { align: 'center' }); y += 6;
+            doc.setFontSize(9);
+            doc.text('TICKET DE VENTA', pw / 2, y, { align: 'center' }); y += 5;
+            doc.setLineWidth(0.3);
+            doc.line(mx, y, pw - mx, y); y += 5;
+
+            // Datos cliente
+            const ahora = new Date();
+            const fecha = ahora.toLocaleDateString('es-BO', { day: '2-digit', month: '2-digit', year: 'numeric' });
+            const hora  = ahora.toLocaleTimeString('es-BO', { hour: '2-digit', minute: '2-digit' });
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            doc.text(`Fecha: ${fecha}   Hora: ${hora}`, mx, y); y += 5;
+            doc.text(`Cliente: ${clienteNombre}`, mx, y); y += 5;
+            doc.text(`DNI/NIT: ${clienteDni}`, mx, y); y += 5;
+            if (esReserva && reservaIdVal) {
+                doc.text(`N\u00b0 Reserva: #${reservaIdVal}`, mx, y); y += 5;
+            }
+            doc.line(mx, y, pw - mx, y); y += 5;
+
+            // Cabecera de items
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(8);
+            doc.text('PRODUCTO', mx, y);
+            doc.text('CANT', 46, y, { align: 'center' });
+            doc.text('SUBTOTAL', pw - mx, y, { align: 'right' });
+            y += 3;
+            doc.line(mx, y, pw - mx, y); y += 5;
+
+            // Items
+            doc.setFont('helvetica', 'normal');
+            let totalVenta = 0;
+            for (let id in carrito) {
+                const item     = carrito[id];
+                const subtotal = item.precio * item.cantidad;
+                totalVenta    += subtotal;
+                const nombre   = item.nombre.length > 22 ? item.nombre.substring(0, 21) + '.' : item.nombre;
+                doc.text(nombre, mx, y);
+                doc.text(String(item.cantidad), 46, y, { align: 'center' });
+                doc.text(`Bs. ${subtotal.toFixed(2)}`, pw - mx, y, { align: 'right' });
+                y += 6;
+            }
+
+            doc.line(mx, y, pw - mx, y); y += 6;
+
+            // Total
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(11);
+            doc.text(`TOTAL: Bs. ${totalVenta.toFixed(2)}`, pw - mx, y, { align: 'right' }); y += 8;
+
+            // Pie
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.text('\u00a1Gracias por su compra!', pw / 2, y, { align: 'center' }); y += 5;
+            doc.text('Panader\u00eda El Horno', pw / 2, y, { align: 'center' });
+
+            // Descargar PDF y luego enviar el form
+            doc.save(`ticket_${ahora.getTime()}.pdf`);
+            document.getElementById('form-caja').submit();
+        }
     </script>
 </body>
 </html>
