@@ -55,10 +55,10 @@
                                 Hornear (+<?= $prod['cantidad_por_tanda'] ?>)
                             </button>
                             <span id="badge-tanda-<?= $prod['id'] ?>" class="badge-tanda" style="display:none;"></span>
-                            <input type="datetime-local" class="input-proxima-tanda"
+                            <input type="time" class="input-proxima-tanda"
                                 data-id="<?= $prod['id'] ?>"
-                                data-original="<?= $prod['proxima_tanda'] ? date('Y-m-d\TH:i', strtotime($prod['proxima_tanda'])) : '' ?>"
-                                value="<?= $prod['proxima_tanda'] ? date('Y-m-d\TH:i', strtotime($prod['proxima_tanda'])) : '' ?>"
+                                data-original="<?= $prod['proxima_tanda'] ? date('H:i', strtotime($prod['proxima_tanda'])) : '' ?>"
+                                value="<?= $prod['proxima_tanda'] ? date('H:i', strtotime($prod['proxima_tanda'])) : '' ?>"
                                 onchange="actualizarBotonGuardar()">
                         </td>
                         <td class="td-mermas">

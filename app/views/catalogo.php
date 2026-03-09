@@ -116,11 +116,14 @@
                         }
                         
                         let btnHtml = '';
+                        const fueraHorario = estaFueraDeHorario();
                         if (prod.stock > 0) {
                             if (estaPenalizado) {
                                 btnHtml = `<button disabled class="btn-agotado">Cuenta Restringida</button>`;
                             } else if (tieneReservaActiva) {
                                 btnHtml = `<button disabled class="btn-agotado">Pedido en curso</button>`;
+                            } else if (fueraHorario) {
+                                btnHtml = `<button disabled class="btn-agotado">Fuera de horario</button>`;
                             } else {
                                 btnHtml = `<button onclick="agregarAlCarrito(${prod.id}, '${prod.nombre.replace(/'/g, "\\'")}', ${prod.precio}, ${prod.stock})" class="btn-reservar">Agregar al Pedido</button>`;
                             }
@@ -135,9 +138,6 @@
                             <h4>Bs. ${parseFloat(prod.precio).toFixed(2)}</h4>
                             ${stockInfo}
                             ${proximaTandaHtml}
-                            ${btnHtml}
-                        `;
-                            ${stockInfo}
                             ${btnHtml}
                         `;
                         contenedor.appendChild(card);
@@ -225,7 +225,6 @@
                 vacio.style.display = 'none';
                 form.style.display = 'block';
                 total.innerHTML = `Total: Bs. ${suma.toFixed(2)}`;
-                // Bloquear confirmación si está fuera de horario
                 const btnConfirmar = form.querySelector('button[type="submit"]');
                 if (estaFueraDeHorario()) {
                     btnConfirmar.disabled = true;

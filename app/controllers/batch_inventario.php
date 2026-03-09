@@ -34,14 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // Próxima tanda: producto_id => datetime string (vacío = limpiar)
+        // Próxima tanda: producto_id => HH:MM (vacío = limpiar)
         if (!empty($_POST['proxima_tanda']) && is_array($_POST['proxima_tanda'])) {
+            date_default_timezone_set('America/La_Paz');
+            $hoy = date('Y-m-d');
             $stmtSet  = $pdo->prepare("UPDATE productos SET proxima_tanda = :ts  WHERE id = :id");
             $stmtNull = $pdo->prepare("UPDATE productos SET proxima_tanda = NULL WHERE id = :id");
             foreach ($_POST['proxima_tanda'] as $id => $ts) {
                 $ts = trim($ts);
                 if ($ts !== '') {
-                    $stmtSet->execute(['ts' => $ts, 'id' => (int)$id]);
+                    $stmtSet->execute(['ts' => $hoy . ' ' . $ts . ':00', 'id' => (int)$id]);
                 } else {
                     $stmtNull->execute(['id' => (int)$id]);
                 }
