@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="navbar">
-        <h2>Punto de Venta (POS)</h2>
+        <h2>Caja Registradora</h2>
         <div>
             <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
             <a href="/?ruta=logout">Cerrar Sesión</a>
@@ -31,16 +31,16 @@
                     <input type="hidden" name="reserva_id" value="<?= $reserva_id ?>">
                     
                     <label>DNI Cliente:</label>
-                    <input type="text" name="cliente_dni" value="<?= htmlspecialchars($cliente_dni) ?>" placeholder="Opcional (Mostrador)" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
+                    <input type="text" name="cliente_dni" value="<?= htmlspecialchars($cliente_dni) ?>" placeholder="Ingrese el DNI o NIT del cliente" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
                     
                     <label>Nombre Cliente:</label>
-                    <input type="text" name="cliente_nombre" value="<?= htmlspecialchars($cliente_nombre) ?>" placeholder="Opcional (Mostrador)" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
+                    <input type="text" name="cliente_nombre" value="<?= htmlspecialchars($cliente_nombre) ?>" placeholder="Ingrese el nombre del cliente" <?= $reserva_id ? 'readonly style="background-color: #eee;"' : '' ?>>
                     
                     <div id="items-carrito" style="margin-top: 15px; border-top: 2px solid #34495e; padding-top: 15px;"></div>
                     
                     <h2 id="total-carrito" class="total-pedido" style="text-align: right; font-size: 1.8em; color: #27ae60;">Total: Bs. 0.00</h2>
                     
-                    <button type="submit" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;">Confirmar Pago y Vender</button>
+                    <button type="submit" id="btn-cobrar" class="btn-reservar" style="font-size: 1.2em; padding: 15px; display: none;">Registrar Venta</button>
                 </form>
             </div>
         </div>

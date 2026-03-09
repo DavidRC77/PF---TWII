@@ -11,7 +11,7 @@
     <div class="navbar">
         <h2>Panel de Control - Panadería</h2>
         <div>
-            <span class="saludo-usuario">Hola, <?= htmlspecialchars($_SESSION['nombre_completo']) ?></span>
+            <span class="saludo-usuario">Bienvenido(a), <?= htmlspecialchars($_SESSION['nombre_completo']) ?></span>
             <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
     </div>

@@ -9,9 +9,9 @@
 </head>
 <body>
     <div class="navbar">
-        <h2>Panadería - Reservas Click & Collect</h2>
+        <h2>Panadería EL Horno</h2>
         <div>
-            <span class="saludo-usuario">Hola, <?= htmlspecialchars($_SESSION['nombre_completo']) ?></span>
+            <span class="saludo-usuario">Bienvenido(a), <?= htmlspecialchars($_SESSION['nombre_completo']) ?></span>
             <a href="/?ruta=mis_reservas" class="btn-mis-reservas">Mis Reservas</a>
             <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
@@ -34,7 +34,7 @@
         <div class="columna-sidebar">
             <?php if ($reserva_activa): ?>
                 <div class="tarjeta-pedido">
-                    <h3>Tu Pedido Activo (#<?= $reserva_activa['id'] ?>)</h3>
+                    <h3>Tu Pedido(#<?= $reserva_activa['id'] ?>)</h3>
                     <ul class="lista-detalles">
                         <?php foreach ($detalles_reserva as $det): ?>
                             <li><?= $det['cantidad'] ?>x <?= htmlspecialchars($det['nombre']) ?> (Bs. <?= number_format($det['precio_unitario'] * $det['cantidad'], 2) ?>)</li>
@@ -59,7 +59,7 @@
                 </div>
             <?php else: ?>
                 <div class="tarjeta-pedido">
-                    <h3>Tu Pedido Nuevo</h3>
+                    <h3>Tu Pedido</h3>
                     <div id="carrito-vacio">
                         <p>No tienes ningún pan en tu pedido aún.</p>
                     </div>
@@ -154,7 +154,7 @@
 
         function sumarDelCarrito(id) {
             if (obtenerTotalEnCarrito() >= limitePanes) {
-                alert("Límite máximo de " + limitePanes + " panes alcanzado." + (!esVip ? " ¡La cuenta VIP no tiene límites!" : ""));
+                alert("Límite máximo de " + limitePanes + " panes alcanzado." + (!esVip ? " Mejora tu cuenta " : ""));
                 return;
             }
             if (carrito[id].cantidad < carrito[id].maxStock) {

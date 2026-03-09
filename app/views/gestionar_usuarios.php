@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="navbar">
-        <h2>Control Total de Usuarios</h2>
+        <h2>Gestión de Usuarios</h2>
         <div>
             <a href="/?ruta=usuario_form" class="btn-nuevo">+ Nuevo Usuario</a>
             <a href="/?ruta=panel_admin" class="btn-volver">Volver</a>

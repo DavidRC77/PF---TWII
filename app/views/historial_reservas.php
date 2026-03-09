@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="navbar">
-        <h2>Historial Completo de Reservas</h2>
+        <h2>Historial de Reservas</h2>
         <div>
             <a href="/?ruta=panel_admin" style="background-color: #34495e; margin-right: 10px;">Volver al Panel</a>
             <a href="/?ruta=logout">Cerrar Sesión</a>

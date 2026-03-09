@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'basico' && $_SESSI
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
     $productos = $_POST['productos'];
     $usuario_id = $_SESSION['usuario_id'];
-    $limite_panes = ($_SESSION['rol'] === 'vip') ? 9999 : 20;
+    $limite_panes = ($_SESSION['rol'] === 'vip') ? 200 : 20;
     
     $total_items_solicitados = 0;
     foreach ($productos as $cantidad) {

@@ -28,8 +28,8 @@
                     <th>Stock Actual</th>
                     <th>Valor Total (Bs.)</th>
                     <th>Opciones</th>
-                    <th>Acción: Horneado</th>
-                    <th>Acción: Pérdidas</th>
+                    <th>Horneados</th>
+                    <th>Pérdidas</th>
                 </tr>
             </thead>
             <tbody>

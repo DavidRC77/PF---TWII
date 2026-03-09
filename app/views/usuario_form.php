@@ -39,7 +39,7 @@
             <label>Rol del Usuario:</label>
             <select name="rol">
                 <option value="basico" <?= $u['rol'] == 'basico' ? 'selected' : '' ?>>Básico (Límite 20)</option>
-                <option value="vip" <?= $u['rol'] == 'vip' ? 'selected' : '' ?>>VIP (Sin límite)</option>
+                <option value="vip" <?= $u['rol'] == 'vip' ? 'selected' : '' ?>>VIP (Límite 200)</option>
                 <option value="admin" <?= $u['rol'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
             </select>
 
