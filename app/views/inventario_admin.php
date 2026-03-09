@@ -67,7 +67,7 @@
                             <form action="/?ruta=eliminar_producto" method="POST" class="form-accion"
                                   onsubmit="return confirm('¿Eliminar permanentemente el producto «<?= htmlspecialchars(addslashes($prod['nombre'])) ?>»? Esta acción no se puede deshacer.')">
                                 <input type="hidden" name="id_producto" value="<?= $prod['id'] ?>">
-                                <button type="submit" class="btn-eliminar-admin">🗑 Eliminar</button>
+                                <button type="submit" class="btn-eliminar-admin">🗑</button>
                             </form>
                         </td>
                     </tr>

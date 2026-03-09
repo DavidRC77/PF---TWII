@@ -69,7 +69,7 @@
                             <form action="/?ruta=eliminar_usuario" method="POST" class="form-accion"
                                   onsubmit="return confirm('¿Eliminar permanentemente al usuario «<?= htmlspecialchars(addslashes($u['nombre_completo'])) ?>»? Esta acción no se puede deshacer.')">
                                 <input type="hidden" name="id_usuario" value="<?= $u['id'] ?>">
-                                <button type="submit" class="btn-eliminar-admin">🗑 Eliminar</button>
+                                <button type="submit" class="btn-eliminar-admin">🗑</button>
                             </form>
                             <?php else: ?>
                                 <span style="color:#aaa; font-size:0.78rem;">—</span>
