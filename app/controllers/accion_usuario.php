@@ -14,11 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo = $conexion->conectar();
 
         if ($accion === 'guardar') {
-            $nombre = trim($_POST['nombre_completo']);
-            $dni = trim($_POST['dni']);
-            $celular = trim($_POST['celular']);
-            $telefono = trim($_POST['telefono']) !== '' ? trim($_POST['telefono']) : null;
-            $correo = trim($_POST['correo']);
+            $nombre   = mb_substr(trim($_POST['nombre_completo']), 0, 150);
+            $dni      = mb_substr(trim($_POST['dni']), 0, 20);
+            $celular  = mb_substr(trim($_POST['celular']), 0, 20);
+            $telefono = trim($_POST['telefono']) !== '' ? mb_substr(trim($_POST['telefono']), 0, 20) : null;
+            $correo   = mb_substr(trim($_POST['correo']), 0, 150);
             $rol = $_POST['rol'];
             // Empleado solo puede asignar roles de cliente
             if ($_SESSION['rol'] === 'empleado' && !in_array($rol, ['basico', 'vip'])) {

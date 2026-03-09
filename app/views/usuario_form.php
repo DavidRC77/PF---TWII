@@ -20,16 +20,16 @@
             <div class="fila-dos-campos">
                 <div>
                     <label>DNI:</label>
-                    <input type="text" name="dni" value="<?= htmlspecialchars($u['dni']) ?>" required>
+                    <input type="text" name="dni" value="<?= htmlspecialchars($u['dni']) ?>" maxlength="20" required>
                 </div>
                 <div>
                     <label>Celular:</label>
-                    <input type="text" name="celular" value="<?= htmlspecialchars($u['celular']) ?>" required>
+                    <input type="text" name="celular" value="<?= htmlspecialchars($u['celular']) ?>" maxlength="20" required>
                 </div>
             </div>
 
             <label>Teléfono (Opcional):</label>
-            <input type="text" name="telefono" value="<?= htmlspecialchars($u['telefono']) ?>">
+            <input type="text" name="telefono" value="<?= htmlspecialchars($u['telefono']) ?>" maxlength="20">
             
             <label>Correo Electrónico:</label>
             <input type="email" name="correo" value="<?= htmlspecialchars($u['correo']) ?>" required>
