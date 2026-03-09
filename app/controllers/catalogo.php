@@ -25,7 +25,8 @@ try {
 
     if ($usuario_data && $usuario_data['castigado'] == 1) {
         $esta_penalizado = true;
-        $fecha_fin_penalizacion = $usuario_data['penalizacion'];
+        $dt = new DateTime($usuario_data['penalizacion'], new DateTimeZone('America/La_Paz'));
+        $fecha_fin_penalizacion = $dt->format('d/m/Y H:i');
     }
 
     $stmtUltimo = $pdo->prepare("SELECT estado, cancelado_por, motivo_cancelacion FROM reservas WHERE usuario_id = :uid ORDER BY id DESC LIMIT 1");

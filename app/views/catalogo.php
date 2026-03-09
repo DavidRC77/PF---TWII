@@ -104,13 +104,13 @@
                         const imgUrl = prod.imagen_url ? prod.imagen_url : 'https://via.placeholder.com/300x150?text=Sin+Imagen';
                         const stockInfo = prod.stock > 0 ? `<p>Stock disponible: <b>${prod.stock}</b></p>` : `<p class="agotado">¡Agotado!</p>`;
 
-                        // Próxima tanda: mostrar countdown si hay hora futura configurada
+                        // Próxima tanda: siempre reservar espacio, mostrar texto solo si hay hora futura
                         let proximaTandaHtml = '';
                         if (prod.proxima_tanda) {
                             const tandasDate = new Date(prod.proxima_tanda);
                             const diffMs = tandasDate - new Date();
                             if (diffMs > 0) {
-                                proximaTandaHtml = `<p class="proxima-tanda" id="tanda-${prod.id}">🔥 Nuevos panes en <span class="countdown" data-target="${tandasDate.toISOString()}">...</span></p>`;
+                                proximaTandaHtml = `<span class="countdown" data-target="${tandasDate.toISOString()}">...</span>`;
                             }
                         }
                         
@@ -136,7 +136,7 @@
                             <p class="desc-prod">${prod.descripcion || 'Sin descripción'}</p>
                             <h4>Bs. ${parseFloat(prod.precio).toFixed(2)}</h4>
                             ${stockInfo}
-                            ${proximaTandaHtml}
+                            <div class="slot-proxima-tanda">${proximaTandaHtml ? '🔥 Nuevos panes en ' + proximaTandaHtml : ''}</div>
                             ${btnHtml}
                         `;
                         contenedor.appendChild(card);
@@ -154,7 +154,7 @@
 
         function agregarAlCarrito(id, nombre, precio, maxStock) {
             if (obtenerTotalEnCarrito() >= limitePanes) {
-                alert("Límite máximo de " + limitePanes + " panes alcanzado." + (!esVip ? " ¡La cuenta VIP no tiene límites!" : ""));
+                alert("Límite máximo de " + limitePanes + " panes alcanzado." + (!esVip ? " mejora tu cuenta " : ""));
                 return;
             }
             if (carrito[id]) {
@@ -291,9 +291,8 @@
                 const target = new Date(el.dataset.target);
                 const diffMs = target - new Date();
                 if (diffMs <= 0) {
-                    // Ocultar el párrafo completo cuando ya pasó
-                    const p = el.closest('.proxima-tanda');
-                    if (p) p.style.display = 'none';
+                    const slot = el.closest('.slot-proxima-tanda');
+                    if (slot) slot.innerHTML = '';
                 } else {
                     const s = Math.ceil(diffMs / 1000);
                     const h = Math.floor(s / 3600);
