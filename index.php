@@ -93,6 +93,9 @@ switch ($ruta) {
     case 'eliminar_usuario':
         require_once __DIR__ . '/app/controllers/eliminar_usuario.php';
         break;
+    case 'batch_inventario':
+        require_once __DIR__ . '/app/controllers/batch_inventario.php';
+        break;
     case 'api_stock':
         require_once __DIR__ . '/app/controllers/api_stock.php';
         break;

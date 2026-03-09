@@ -40,8 +40,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'], $_POST['accion'
                 }
             } 
             elseif ($accion === 'extender' && !$reserva['tiempo_ampliado']) {
-                $stmtExtend = $pdo->prepare("UPDATE reservas SET fecha_expiracion = fecha_expiracion + INTERVAL '15 minutes', tiempo_ampliado = true WHERE id = :id");
-                $stmtExtend->execute(['id' => $id_reserva]);
+                // Si extender 15 min pasaría las 22:00, cancelar con motivo de horario
+                date_default_timezone_set('America/La_Paz');
+                $totalMin = (int)date('H') * 60 + (int)date('i');
+                if ($totalMin >= 21 * 60 + 45) {
+                    $stmtCancelar = $pdo->prepare("UPDATE reservas SET estado = 'cancelado', cancelado_por = 'admin', motivo_cancelacion = 'Fuera de horario de atención — la panadería cierra a las 22:00.' WHERE id = :id");
+                    $stmtCancelar->execute(['id' => $id_reserva]);
+
+                    $stmtDetalles = $pdo->prepare("SELECT producto_id, cantidad FROM detalle_reservas WHERE reserva_id = :rid");
+                    $stmtDetalles->execute(['rid' => $id_reserva]);
+                    $detalles = $stmtDetalles->fetchAll(PDO::FETCH_ASSOC);
+
+                    $stmtStock = $pdo->prepare("UPDATE productos SET stock = stock + :cant WHERE id = :pid");
+                    foreach ($detalles as $det) {
+                        $stmtStock->execute(['cant' => $det['cantidad'], 'pid' => $det['producto_id']]);
+                    }
+                } else {
+                    $stmtExtend = $pdo->prepare("UPDATE reservas SET fecha_expiracion = fecha_expiracion + INTERVAL '15 minutes', tiempo_ampliado = true WHERE id = :id");
+                    $stmtExtend->execute(['id' => $id_reserva]);
+                }
             }
 
             $pdo->commit();

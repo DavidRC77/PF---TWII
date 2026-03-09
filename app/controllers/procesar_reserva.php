@@ -7,6 +7,15 @@ if (!isset($_SESSION['usuario_id']) || ($_SESSION['rol'] !== 'basico' && $_SESSI
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['productos'])) {
+    // Verificar horario de atención: 06:00 a 21:30 (Bolivia UTC-4)
+    date_default_timezone_set('America/La_Paz');
+    $totalMin = (int)date('H') * 60 + (int)date('i');
+    if ($totalMin >= 21 * 60 + 30 || $totalMin < 6 * 60) {
+        session_write_close();
+        header("Location: /?ruta=catalogo");
+        exit();
+    }
+
     $productos = $_POST['productos'];
     $usuario_id = $_SESSION['usuario_id'];
     $limite_panes = ($_SESSION['rol'] === 'vip') ? 200 : 20;

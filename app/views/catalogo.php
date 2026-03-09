@@ -23,6 +23,10 @@
         </div>
     <?php endif; ?>
 
+    <div id="banner-cerrado" class="alerta-penalizacion" style="display:none; background-color:#fef9e7; color:#c0392b; border-left-color:#c0392b;">
+        <strong>¡Panadería Cerrada!</strong> Nuestro horario de atención es de <strong>06:00 a 22:00</strong>. No se pueden realizar pedidos en este momento.
+    </div>
+
     <?php if ($alerta_cancelado_admin && !$reserva_activa): ?>
         <div class="alerta-penalizacion" style="background-color: #fef9e7; color: #d35400; border-left-color: #d35400;">
             <strong>Aviso Importante:</strong> Su pedido anterior fue cancelado por la panadería. Lamentamos las molestias.<br>
@@ -99,6 +103,17 @@
                         card.className = 'card';
                         const imgUrl = prod.imagen_url ? prod.imagen_url : 'https://via.placeholder.com/300x150?text=Sin+Imagen';
                         const stockInfo = prod.stock > 0 ? `<p>Stock disponible: <b>${prod.stock}</b></p>` : `<p class="agotado">¡Agotado!</p>`;
+
+                        // Próxima tanda: mostrar countdown si hay fecha futura (dentro de 4 horas)
+                        let proximaTandaHtml = '';
+                        if (prod.proxima_tanda) {
+                            const tandasDate = new Date(prod.proxima_tanda);
+                            const ahora = new Date();
+                            const diffMs = tandasDate - ahora;
+                            if (diffMs > 0 && diffMs < 4 * 60 * 60 * 1000) {
+                                proximaTandaHtml = `<p class="proxima-tanda">🔥 Nuevos panes en <span class="countdown" data-target="${tandasDate.toISOString()}">...</span></p>`;
+                            }
+                        }
                         
                         let btnHtml = '';
                         if (prod.stock > 0) {
@@ -118,6 +133,10 @@
                             <h3>${prod.nombre}</h3>
                             <p class="desc-prod">${prod.descripcion || 'Sin descripción'}</p>
                             <h4>Bs. ${parseFloat(prod.precio).toFixed(2)}</h4>
+                            ${stockInfo}
+                            ${proximaTandaHtml}
+                            ${btnHtml}
+                        `;
                             ${stockInfo}
                             ${btnHtml}
                         `;
@@ -206,6 +225,15 @@
                 vacio.style.display = 'none';
                 form.style.display = 'block';
                 total.innerHTML = `Total: Bs. ${suma.toFixed(2)}`;
+                // Bloquear confirmación si está fuera de horario
+                const btnConfirmar = form.querySelector('button[type="submit"]');
+                if (estaFueraDeHorario()) {
+                    btnConfirmar.disabled = true;
+                    btnConfirmar.textContent = 'Fuera de horario (06:00–22:00)';
+                } else {
+                    btnConfirmar.disabled = false;
+                    btnConfirmar.textContent = 'Confirmar Pedido';
+                }
             } else {
                 vacio.style.display = 'block';
                 form.style.display = 'none';
@@ -241,6 +269,44 @@
 
         cargarCatalogo();
         if (!tieneReservaActiva && !estaPenalizado) setInterval(cargarCatalogo, 10000);
+
+        // ── Horario de atención ──────────────────────────────────────────────
+        function estaFueraDeHorario() {
+            const ahora = new Date();
+            const h = ahora.getHours();
+            const m = ahora.getMinutes();
+            const totalMin = h * 60 + m;
+            return totalMin >= 21 * 60 + 30 || totalMin < 6 * 60;
+        }
+
+        function verificarHorario() {
+            const banner = document.getElementById('banner-cerrado');
+            if (banner) banner.style.display = estaFueraDeHorario() ? 'block' : 'none';
+        }
+
+        verificarHorario();
+        setInterval(verificarHorario, 60000);
+
+        // ── Countdown próxima tanda ──────────────────────────────────────────
+        function actualizarCountdowns() {
+            document.querySelectorAll('.countdown[data-target]').forEach(el => {
+                const target = new Date(el.dataset.target);
+                const diffMs = target - new Date();
+                if (diffMs <= 0) {
+                    el.textContent = '¡ya están listos!';
+                    el.style.color = '#27ae60';
+                } else {
+                    const s = Math.ceil(diffMs / 1000);
+                    const min = Math.floor(s / 60);
+                    const seg = s % 60;
+                    el.textContent = min > 0
+                        ? min + ' min ' + seg.toString().padStart(2, '0') + 's'
+                        : seg + 's';
+                }
+            });
+        }
+
+        setInterval(actualizarCountdowns, 1000);
     </script>
 </body>
 </html>

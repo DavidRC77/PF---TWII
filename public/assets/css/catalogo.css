@@ -69,6 +69,10 @@ body { background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%); background
 /* BOTÓN DESACTIVADO / AGOTADO */
 .btn-agotado { display: block; width: 100%; padding: 9px 0; background-color: #bdc3c7; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: not-allowed; }
 
+/* PRÓXIMA TANDA / COUNTDOWN */
+.proxima-tanda { margin: 6px 0 0; font-size: 0.78rem; color: #d35400; font-weight: 600; text-align: center; }
+.countdown { font-weight: 700; color: #e74c3c; }
+
 /* ACCIONES DE RESERVA ACTIVA */
 .formulario-acciones { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
 .btn-extender { display: block; width: 100%; padding: 10px 0; background-color: #2980b9; color: #fff; border: none; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.25s; }

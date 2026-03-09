@@ -28,7 +28,7 @@
                     <th>Stock Actual</th>
                     <th>Valor Total (Bs.)</th>
                     <th>Opciones</th>
-                    <th>Horneados</th>
+                    <th>Horneados / Próx. Tanda</th>
                     <th>Pérdidas</th>
                 </tr>
             </thead>
@@ -49,18 +49,29 @@
                         <td>
                             <a href="/?ruta=producto_form&id=<?= $prod['id'] ?>" class="btn-editar">Editar</a>
                         </td>
-                        <td>
-                            <form action="/?ruta=horneados" method="POST" class="form-accion">
-                                <input type="hidden" name="id" value="<?= $prod['id'] ?>">
-                                <button type="submit" class="btn-hornear">Hornear (+<?= $prod['cantidad_por_tanda'] ?>)</button>
-                            </form>
+                        <td class="td-horneados">
+                            <button type="button" class="btn-hornear"
+                                onclick="agregarTanda(<?= $prod['id'] ?>, <?= $prod['cantidad_por_tanda'] ?>)">
+                                Hornear (+<?= $prod['cantidad_por_tanda'] ?>)
+                            </button>
+                            <span id="badge-tanda-<?= $prod['id'] ?>" class="badge-tanda" style="display:none;"></span>
+                            <input type="datetime-local" class="input-proxima-tanda"
+                                data-id="<?= $prod['id'] ?>"
+                                data-original="<?= $prod['proxima_tanda'] ? date('Y-m-d\TH:i', strtotime($prod['proxima_tanda'])) : '' ?>"
+                                value="<?= $prod['proxima_tanda'] ? date('Y-m-d\TH:i', strtotime($prod['proxima_tanda'])) : '' ?>"
+                                onchange="actualizarBotonGuardar()">
                         </td>
-                        <td>
-                            <form action="/?ruta=perdidas" method="POST" class="form-inline form-accion">
-                                <input type="hidden" name="id" value="<?= $prod['id'] ?>">
-                                <input type="number" name="cantidad" min="1" max="<?= $prod['stock'] ?>" class="input-merma" required <?= $prod['stock'] == 0 ? 'disabled' : '' ?>>
-                                <button type="submit" class="btn-merma" <?= $prod['stock'] == 0 ? 'disabled' : '' ?>>Eliminar</button>
-                            </form>
+                        <td class="td-mermas">
+                            <div class="form-inline form-accion">
+                                <input type="number" id="merma-input-<?= $prod['id'] ?>"
+                                    min="1" max="<?= $prod['stock'] ?>"
+                                    class="input-merma"
+                                    <?= $prod['stock'] == 0 ? 'disabled' : '' ?>>
+                                <button type="button" class="btn-merma"
+                                    onclick="agregarMerma(<?= $prod['id'] ?>, <?= $prod['stock'] ?>)"
+                                    <?= $prod['stock'] == 0 ? 'disabled' : '' ?>>Agregar</button>
+                                <span id="badge-merma-<?= $prod['id'] ?>" class="badge-merma" style="display:none;"></span>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -72,5 +83,90 @@
         </div>
         <div class="total-inventario">Valor Total del Inventario: <strong>Bs. <?= number_format($total_inventario, 2) ?></strong></div>
     </div>
+
+    <div class="contenedor-guardar-batch">
+        <form id="form-batch" action="/?ruta=batch_inventario" method="POST">
+            <input type="hidden" name="back" value="inventario">
+            <div id="hidden-inputs"></div>
+            <button type="button" class="btn-guardar-batch" id="btn-guardar-batch" disabled onclick="guardarCambios()">
+                Guardar Cambios
+            </button>
+        </form>
+    </div>
+
+    <script>
+        let pendingHorneados = {};
+        let pendingMermas = {};
+
+        function agregarTanda(id, cantPorTanda) {
+            if (!pendingHorneados[id]) pendingHorneados[id] = { tandas: 0, cantPorTanda: cantPorTanda };
+            pendingHorneados[id].tandas++;
+            const badge = document.getElementById('badge-tanda-' + id);
+            badge.style.display = 'inline-block';
+            const total = pendingHorneados[id].tandas * cantPorTanda;
+            badge.textContent = pendingHorneados[id].tandas + ' tanda(s) (+' + total + ')';
+            actualizarBotonGuardar();
+        }
+
+        function agregarMerma(id, stockActual) {
+            const input = document.getElementById('merma-input-' + id);
+            const cant = parseInt(input.value);
+            if (!cant || cant <= 0) return;
+            const totalMerma = (pendingMermas[id] || 0) + cant;
+            if (totalMerma > stockActual) {
+                alert('La merma total (' + totalMerma + ') supera el stock actual (' + stockActual + ').');
+                return;
+            }
+            pendingMermas[id] = totalMerma;
+            input.value = '';
+            const badge = document.getElementById('badge-merma-' + id);
+            badge.style.display = 'inline-block';
+            badge.textContent = '\u2212' + pendingMermas[id] + ' uds.';
+            actualizarBotonGuardar();
+        }
+
+        function actualizarBotonGuardar() {
+            const btn = document.getElementById('btn-guardar-batch');
+            const hasHorneados = Object.keys(pendingHorneados).length > 0;
+            const hasMermas    = Object.keys(pendingMermas).length > 0;
+            const hasProxima   = Array.from(document.querySelectorAll('.input-proxima-tanda'))
+                                    .some(el => el.value !== el.dataset.original);
+            btn.disabled = !(hasHorneados || hasMermas || hasProxima);
+        }
+
+        function guardarCambios() {
+            const form      = document.getElementById('form-batch');
+            const container = document.getElementById('hidden-inputs');
+            container.innerHTML = '';
+
+            for (let id in pendingHorneados) {
+                const inp = document.createElement('input');
+                inp.type  = 'hidden';
+                inp.name  = 'horneados[' + id + ']';
+                inp.value = pendingHorneados[id].tandas;
+                container.appendChild(inp);
+            }
+
+            for (let id in pendingMermas) {
+                const inp = document.createElement('input');
+                inp.type  = 'hidden';
+                inp.name  = 'mermas[' + id + ']';
+                inp.value = pendingMermas[id];
+                container.appendChild(inp);
+            }
+
+            document.querySelectorAll('.input-proxima-tanda').forEach(el => {
+                if (el.value !== el.dataset.original) {
+                    const inp = document.createElement('input');
+                    inp.type  = 'hidden';
+                    inp.name  = 'proxima_tanda[' + el.dataset.id + ']';
+                    inp.value = el.value;
+                    container.appendChild(inp);
+                }
+            });
+
+            form.submit();
+        }
+    </script>
 </body>
 </html>
