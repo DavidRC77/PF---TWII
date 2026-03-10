@@ -27,7 +27,6 @@
                     <th>Precio Unit.</th>
                     <th>Stock Actual</th>
                     <th>Valor Total (Bs.)</th>
-                    <th>Opciones</th>
                     <th>Horneados / Próx. Tanda</th>
                     <th>Pérdidas</th>
                 </tr>
