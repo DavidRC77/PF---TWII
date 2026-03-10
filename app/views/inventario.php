@@ -12,7 +12,6 @@
     <div class="navbar">
         <h2>Gestión de Inventario</h2>
         <div>
-            <a href="/?ruta=producto_form" class="btn-agregar-inv">Agregar Producto</a>
             <a href="/?ruta=panel_admin" class="btn-volver-inv">Volver al Panel</a>
             <a href="/?ruta=logout">Cerrar Sesión</a>
         </div>
