@@ -46,9 +46,6 @@
                         <td>Bs. <?= number_format($prod['precio'], 2) ?></td>
                         <td class="td-stock"><?= $prod['stock'] ?></td>
                         <td>Bs. <?= number_format($prod['precio'] * $prod['stock'], 2) ?></td>
-                        <td>
-                            <a href="/?ruta=producto_form&id=<?= $prod['id'] ?>" class="btn-editar">Editar</a>
-                        </td>
                         <td class="td-horneados">
                             <button type="button" class="btn-hornear"
                                 onclick="agregarTanda(<?= $prod['id'] ?>, <?= $prod['cantidad_por_tanda'] ?>)">
